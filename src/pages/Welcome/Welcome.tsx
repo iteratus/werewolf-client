@@ -1,15 +1,15 @@
-import React, { Component } from 'react';
-import classNames from 'classnames';
-import { withRouter } from 'react-router';
+import React from "react";
+import { withRouter } from "react-router";
+import { RouteComponentProps } from "react-router-dom";
 
-import styles from './Welcome.module.scss';
+import styles from "./Welcome.module.scss";
 
-function Welcome():any {
-    return (
-      <>
-        <div className={styles.choose}>Something</div>
-      </>
-    );
-}
+const Welcome: React.FC<RouteComponentProps> = () => {
+  return (
+    <>
+      <div className={styles.choose}>Hello werewolves</div>
+    </>
+  );
+};
 
 export default withRouter(Welcome);

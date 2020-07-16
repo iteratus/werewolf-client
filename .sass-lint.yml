@@ -1,0 +1,15 @@
+files:
+  include: 'src/**/*.s+(a|c)ss'
+  ignore:
+    - 'node_modules/**'
+    - 'src/vendor/**/*.scss'
+    - 'src/tests/**/*.scss'
+rules:
+  class-name-format:
+    - 1
+    - convention: 'camelcase'
+  property-sort-order:
+    - 1
+    - order: 'recess'
+resolvers:
+  indentation: 1
