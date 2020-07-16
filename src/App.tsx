@@ -13,7 +13,7 @@ import Welcome from "./pages/Welcome";
 
 import styles from "./App.module.scss";
 
-const App: React.FC = () => {
+const App = (): JSX.Element => {
   return (
     <Router>
       <div className={styles.app}>

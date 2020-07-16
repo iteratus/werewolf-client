@@ -1,7 +1,7 @@
 import React from "react";
 import Logo from "../Logo";
 
-const Header: Component = () => (
+const Header = (): JSX.Element => (
   <div>
     <Logo />
   </div>
