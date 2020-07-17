@@ -21,6 +21,7 @@
     "@types/random-string": "^0.0.28",
     "@types/react": "^16.9.0",
     "@types/react-dom": "^16.9.8",
+    "@types/ws": "^7.2.6",
     "classnames": "^2.2.6",
     "node-sass": "^4.14.1",
     "random-string": "^0.2.0",
@@ -31,7 +32,8 @@
     "react-router-dom": "^5.2.0",
     "react-scripts": "3.4.1",
     "run-p": "^0.0.0",
-    "typescript": "~3.7.2"
+    "typescript": "~3.7.2",
+    "ws": "^7.3.1"
   },
   "scripts": {
     "start": "react-scripts start",
