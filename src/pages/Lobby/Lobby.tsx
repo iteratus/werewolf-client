@@ -1,32 +1,69 @@
-import React, { useEffect } from "react";
+import React, {
+  useState,
+  useEffect,
+  createRef,
+  FormEvent,
+  useRef,
+  MutableRefObject
+} from "react";
 import { withRouter } from "react-router";
 import { RouteComponentProps } from "react-router-dom";
 
 import styles from "./Lobby.module.scss";
 
 const Lobby = (props: RouteComponentProps): JSX.Element => {
-  const ws = new WebSocket("ws://localhost:8668/ws");
-
+  const ws: MutableRefObject<WebSocket | undefined> = useRef();
   useEffect(() => {
-    ws.onopen = () => {
+    ws.current = new WebSocket("ws://localhost:8668/ws");
+    ws.current.onopen = () => {
       console.log("connected");
-      ws.send("henlo pommes");
+      ws.current && ws.current.send("henlo werewolves");
     };
 
-    ws.onmessage = event => {
+    ws.current.onmessage = event => {
       console.log(event.data);
     };
 
-    ws.onclose = () => {
+    ws.current.onclose = () => {
       console.log("disconnected");
-      // automatically try to reconnect on connection loss
     };
-  });
+  }, []);
+
+  const inputRef = createRef<HTMLInputElement>();
+
+  const [message, setMessage] = useState("");
+
+  const sendMessage = (event: FormEvent) => {
+    event.preventDefault();
+
+    if (inputRef.current && inputRef.current.value !== "") {
+      ws.current && ws.current.send(inputRef.current.value);
+    }
+  };
 
   return (
-    <>
-      <div className={styles.choose}>Hello werewolves</div>
-    </>
+    <main>
+      <form onSubmit={sendMessage}>
+        <div className={styles.choose}>Hello werewolves</div>
+        <ul>
+          <li>
+            <label htmlFor="message">Message</label>
+            <input
+              id="message"
+              ref={inputRef}
+              type="text"
+              value={message}
+              onChange={() => {
+                setMessage(inputRef.current ? inputRef.current.value : "");
+              }}
+            />
+          </li>
+          <li>
+            <button type="submit">Send</button>
+          </li>
+        </ul>
+      </form>
+    </main>
   );
 };
 
