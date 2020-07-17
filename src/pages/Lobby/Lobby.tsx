@@ -2,9 +2,9 @@ import React from "react";
 import { withRouter } from "react-router";
 import { RouteComponentProps } from "react-router-dom";
 
-import styles from "./Welcome.module.scss";
+import styles from "./Lobby.module.scss";
 
-const Welcome = (props: RouteComponentProps): JSX.Element => {
+const Lobby = (props: RouteComponentProps): JSX.Element => {
   return (
     <>
       <div className={styles.choose}>Hello werewolves</div>
@@ -12,4 +12,4 @@ const Welcome = (props: RouteComponentProps): JSX.Element => {
   );
 };
 
-export default withRouter(Welcome);
+export default withRouter(Lobby);
