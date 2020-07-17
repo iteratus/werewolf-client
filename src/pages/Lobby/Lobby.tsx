@@ -44,7 +44,7 @@ const Lobby = (props: RouteComponentProps): JSX.Element => {
   return (
     <main>
       <form onSubmit={sendMessage}>
-        <div className={styles.choose}>Hello werewolves</div>
+        <div className={styles.choose}>Henlo werewolves</div>
         <ul>
           <li>
             <label htmlFor="message">Message</label>
