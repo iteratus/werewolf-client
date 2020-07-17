@@ -10,13 +10,13 @@ import randomString from "random-string";
 
 import Header from "./components/Header";
 import User from "./pages/User";
-import Welcome from "./pages/Welcome";
+import Lobby from "./pages/Lobby";
 import GameContext from "./GameContext";
 
 import styles from "./App.module.scss";
 
 const App = (): JSX.Element => {
-  let MainApp = Welcome;
+  let MainApp = Lobby;
 
   const storedUsername = localStorage.getItem("username");
 
