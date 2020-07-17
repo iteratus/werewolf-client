@@ -1,1 +1,1 @@
-# werewolf-client
+# werewolf
