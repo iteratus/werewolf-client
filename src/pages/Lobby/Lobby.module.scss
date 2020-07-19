@@ -1,66 +1,53 @@
 $space: 4vw;
 $animation-duration: 1s;
 
+main {
+  height: calc(100vh - 21px);
+  background: no-repeat center/cover url("img/app-background.jpg");
+  position: relative;
+}
+
 .choose {
   display: flex;
   flex-grow: 1;
 }
 
-.column {
-  flex: 1 0 auto;
-  margin: $space 0 $space $space;
-
-  &:last-child {
-    margin-right: $space;
-  }
-}
-
-.button {
-  position: relative;
+.fog {
+  position: absolute;
+  top: 0;
+  left: 0;
   width: 100%;
   height: 100%;
-  border-radius: 50%;
-}
+  overflow: hidden;
+  z-index: 0;
 
-.icon {
-  width: 100%;
-  height: 100%;
-  color: #fd0;
-  border-radius: 50%;
-
-  &.neutral {
-    color: #eee;
-  }
-
-  &.sad {
-    color: #ed5740;
-  }
-
-  &.checkCircle {
+  &:before, &:after {
+    content: "";
     position: absolute;
-    color: #01befe;
-    opacity: 0;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 300%;
+    background-size: contain;
+    background-repeat: repeat-x;
+  }
 
-    [class*='active'] & {
-      animation: blendOut ease-out #{$animation-duration};
+  &:before {
+    background-image: url('img/fog-1.png');
+    animation: hover 140s linear 0s infinite;
+  }
+
+  &:after {
+    background-image: url('img/fog-2.png');
+    animation: hover 60s linear 0s infinite;
+  }
+
+  @keyframes hover {
+    from {
+      transform: translate3d(0, 0, 0);
     }
-  }
-}
-
-@keyframes blendOut {
-  0% {
-    opacity: 1;
-  }
-
-  33% {
-    opacity: 1;
-  }
-
-  40% {
-    opacity: 0.9;
-  }
-
-  100% {
-    opacity: 0;
+    to {
+      transform: translate3d(-200vw, 0, 0);
+    }
   }
 }
