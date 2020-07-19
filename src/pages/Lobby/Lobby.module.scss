@@ -2,7 +2,8 @@ $space: 4vw;
 $animation-duration: 1s;
 
 main {
-  height: calc(100vh - 21px);
+  height: calc(100vh - 8rem);
+  padding-top: 8rem;
   background: no-repeat center/cover url("img/app-background.jpg");
   position: relative;
 }
