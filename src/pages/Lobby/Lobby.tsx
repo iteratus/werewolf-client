@@ -48,16 +48,18 @@ const Lobby = (props: RouteComponentProps): JSX.Element => {
         <div className={styles.choose}>Henlo werewolves</div>
         <ul>
           <li>
-            <label htmlFor="message">Message</label>
-            <input
-              id="message"
-              ref={inputRef}
-              type="text"
-              value={message}
-              onChange={() => {
-                setMessage(inputRef.current ? inputRef.current.value : "");
-              }}
-            />
+            <label htmlFor="message">
+              Username
+              <input
+                id="message"
+                ref={inputRef}
+                type="text"
+                value={message}
+                onChange={() => {
+                  setMessage(inputRef.current ? inputRef.current.value : "");
+                }}
+              />
+            </label>
           </li>
           <li>
             <button type="submit">Send</button>
