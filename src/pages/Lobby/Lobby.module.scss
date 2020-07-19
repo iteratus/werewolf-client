@@ -10,6 +10,7 @@ main {
 .choose {
   display: flex;
   flex-grow: 1;
+  color: #fff;
 }
 
 .fog {
@@ -49,5 +50,15 @@ main {
     to {
       transform: translate3d(-200vw, 0, 0);
     }
+  }
+}
+
+form {
+  position: relative;
+  z-index: 2;
+
+  li {
+    list-style: none;
+    color: #fff;
   }
 }
