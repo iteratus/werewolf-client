@@ -1,0 +1,13 @@
+{
+  "sequence": [
+    {
+      "night": ["special", "kill"]
+    },
+    {
+      "post-night": ["find-victims"]
+    },
+    {
+      "day": ["reveal", "lynch"]
+    }
+  ]
+}
