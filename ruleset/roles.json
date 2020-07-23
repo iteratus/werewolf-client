@@ -1,0 +1,23 @@
+{
+  "amor": {
+    "name": "role.amor.name",
+    "actions": {
+      "init": "chooseCouple"
+    }
+  },
+  "mayor": {
+    "name": "role.mayor.name",
+    "actions": {
+      "lynch": "doubleVoteToLynch"
+    }
+  },
+  "villager": {
+    "name": "role.villager.name"
+  },
+  "wolf": {
+    "name": "role.wolf.name",
+    "actions": {
+      "night": "voteToKill"
+    }
+  }
+}
