@@ -26,4 +26,5 @@ export const chooseCouple = () => {
   // choose two players
   // set couple death action on player 1
   // set couple death action on player all players2
+  // remove special action from amor/self
 };

@@ -2,7 +2,7 @@
   "amor": {
     "name": "role.amor.name",
     "actions": {
-      "init": "chooseCouple"
+      "special": "chooseCouple"
     }
   },
   "mayor": {
