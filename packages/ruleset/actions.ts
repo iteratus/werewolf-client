@@ -28,3 +28,8 @@ export const chooseCouple = () => {
   // set couple death action on players2
   // remove special action from amor/self
 };
+
+export const revealMayor = () => {
+  // set day-lynch action to doubleVoteToLynch
+  return doubleVoteToLynch;
+};

@@ -4,10 +4,13 @@
       "night": ["special", "kill"]
     },
     {
-      "post-night": ["find-victims"]
+      "morning": ["find-victims"]
     },
     {
-      "day": ["reveal", "lynch"]
+      "day": ["reveal"]
+    },
+    {
+      "evening": ["lynch"]
     }
   ]
 }

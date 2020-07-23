@@ -8,7 +8,7 @@
   "mayor": {
     "name": "role.mayor.name",
     "actions": {
-      "lynch": "doubleVoteToLynch"
+      "reveal": "revealMayor"
     }
   },
   "villager": {
