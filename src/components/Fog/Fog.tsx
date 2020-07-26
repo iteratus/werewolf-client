@@ -7,11 +7,17 @@ const Fog = (): JSX.Element => {
   const fogContent = <div className={styles.fog_graphic} />;
 
   const createFog = () => {
-    return React.createElement(
-      "div",
-      { className: classNames(styles.fog) },
-      fogContent
-    );
+    const arrayOfFog = [];
+    for (let step = 0; step <= 200; step += 1) {
+      arrayOfFog.push(
+        React.createElement(
+          "div",
+          { className: classNames(styles.fog) },
+          fogContent
+        )
+      );
+    }
+    return arrayOfFog;
   };
 
   return <div className={styles.fog_wrapper}>{createFog()}</div>;
