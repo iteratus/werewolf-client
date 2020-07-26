@@ -8,6 +8,7 @@ import {
 
 import randomString from "random-string";
 
+import Fog from "../../components/Fog";
 import Header from "../../components/Header";
 import User from "../User";
 import Lobby from "../Lobby";
@@ -30,7 +31,7 @@ const App = (): JSX.Element => {
     <Router>
       <GameContext.Provider value={{ username, setUsername }}>
         <div className={styles.app}>
-          <div className={styles.fog} />
+          <Fog />
           <Header />
           <Switch>
             <Route exact path="/:session" component={MainApp} />

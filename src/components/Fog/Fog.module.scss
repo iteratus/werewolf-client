@@ -1,0 +1,61 @@
+.fog_wrapper {
+  position: absolute;
+  height: 100vh;
+  width: 100vw;
+}
+
+.fog {
+  position: absolute;
+
+  &_graphic {
+    transform: translate(-50%, -50%);
+  }
+
+  @for $i from 1 through 100 {
+    &:nth-child(#{$i}) {
+      top: random(50) + 25%;
+      left: random(60) + 20%;
+      animation: fog random(5000) + 5000ms ease infinite alternate;
+      transform: translateZ(random(500) - 250px);
+    }
+
+    &:nth-child(#{$i}) &_graphic {
+      width: random(400) + 40px;
+      height: random(100) + 20px;
+      background: rgb(random(255), random(255), random(255));
+      background: rgba(#fff, random(5) / 10);
+      filter: blur(random(30) + 30px);
+
+      $pattern1: random(80) + 20;
+      $pattern2: 100 - $pattern1;
+      $pattern3: random(80) + 20;
+      $pattern4: 100 - $pattern3;
+      $pattern5: random(80) + 20;
+      $pattern6: 100 - $pattern5;
+      $pattern7: random(80) + 20;
+      $pattern8: 100 - $pattern7;
+      border-radius: #{$pattern3 + 0%} #{$pattern4 + 0%} #{$pattern1 + 0%} #{$pattern2 + 0%} / #{$pattern5 + 0%} #{$pattern7 + 0%} #{$pattern8 + 0%} #{$pattern6 + 0%};
+      animation: slide random(10000) + 10000ms ease-in-out infinite alternate;
+    }
+  }
+}
+
+@keyframes fog {
+  0% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0;
+  }
+}
+
+@keyframes slide {
+  0% {
+    transform: translateX(50%);
+  }
+
+  100% {
+    transform: translateX(-50%);
+  }
+}
