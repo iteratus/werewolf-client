@@ -1,5 +1,5 @@
 import React from "react";
-import logoImg from "./img/werewolf.png";
+import logoImg from "./img/logo.svg";
 
 import styles from "./Logo.module.scss";
 

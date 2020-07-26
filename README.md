@@ -1,3 +1,3 @@
-![Werewolf logo](werewolf.png)
+![Werewolf logo](logo.svg)
 
 # Werewolf - The Game
