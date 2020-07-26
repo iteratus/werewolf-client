@@ -29,16 +29,18 @@ const User = (props: RouteComponentProps): JSX.Element => {
         </div>
         <ul>
           <li>
-            <label htmlFor="username">Username</label>
-            <input
-              id="username"
-              ref={inputRef}
-              type="text"
-              value={username}
-              onChange={() => {
-                setUsername(inputRef.current ? inputRef.current.value : "");
-              }}
-            />
+            <label htmlFor="username">
+              Username
+              <input
+                id="username"
+                ref={inputRef}
+                type="text"
+                value={username}
+                onChange={() => {
+                  setUsername(inputRef.current ? inputRef.current.value : "");
+                }}
+              />
+            </label>
           </li>
           <li>
             <button type="submit">Play!</button>
