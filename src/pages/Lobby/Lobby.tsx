@@ -42,8 +42,7 @@ const Lobby = (props: RouteComponentProps): JSX.Element => {
   };
 
   return (
-    <main>
-      <div className={styles.fog} />
+    <main className={styles.lobby}>
       <form onSubmit={sendMessage}>
         <div className={styles.choose}>Henlo werewolves</div>
         <ul>

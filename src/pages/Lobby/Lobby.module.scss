@@ -1,11 +1,8 @@
 $space: 4vw;
 $animation-duration: 1s;
 
-main {
-  height: calc(100vh - 8rem);
-  padding-top: 8rem;
-  background: no-repeat center/cover url("img/app-background.jpg");
-  position: relative;
+.lobby {
+  padding: 0 2rem;
 }
 
 .choose {
@@ -14,49 +11,14 @@ main {
   color: #fff;
 }
 
-.fog {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  overflow: hidden;
-  z-index: 0;
-
-  &:before, &:after {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    height: 100%;
-    width: 300%;
-    background-size: contain;
-    background-repeat: repeat-x;
-  }
-
-  &:before {
-    background-image: url('img/fog-1.png');
-    animation: hover 140s linear 0s infinite;
-  }
-
-  &:after {
-    background-image: url('img/fog-2.png');
-    animation: hover 60s linear 0s infinite;
-  }
-
-  @keyframes hover {
-    from {
-      transform: translate3d(0, 0, 0);
-    }
-    to {
-      transform: translate3d(-200vw, 0, 0);
-    }
-  }
-}
-
 form {
+  text-align: center;
   position: relative;
   z-index: 2;
+
+  ul {
+    padding: 0;
+  }
 
   li {
     list-style: none;
