@@ -31,7 +31,8 @@ export const chooseCouple = (): string[] => {
   return couple;
 };
 
-export const revealMayor = () => {
+export const revealMayor = (): object[] => {
   // set day-lynch action to doubleVoteToLynch
-  return doubleVoteToLynch;
+  const actions = [{ lynch: "doubleVoteToLynch" }];
+  return actions;
 };
