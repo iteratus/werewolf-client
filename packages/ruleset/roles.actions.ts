@@ -31,8 +31,21 @@ export const chooseCouple = (): Array<string> => {
   return couple;
 };
 
-export const revealMayor = (): object[] => {
+export const revealMayor = (): Array<ActionObject> => {
   // set day-lynch action to doubleVoteToLynch
-  const actions = [{ lynch: "doubleVoteToLynch" }];
+  const actions: Array<ActionObject> = [
+    { lynch: "doubleVoteToLynch", reveal: "" }
+  ];
   return actions;
 };
+
+// const funct = (boolParam: boolean): string => {
+//   return true;
+// };
+
+// const myFunction = (boolParam: boolean): (() => string) => {
+//   return () => String(boolParam);
+// };
+
+type action = "lynch" | "reveal";
+type ActionObject = { [key in action]?: string };
