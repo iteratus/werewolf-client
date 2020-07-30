@@ -1,0 +1,81 @@
+{
+  "name": "werewolf-client",
+  "version": "0.1.0",
+  "repository": "git@github.com:iteratus/werewolf-client.git",
+  "author": "Michael Huber <code@iteratus.com> (https://code.iteratus.com)",
+  "contributors": [
+    "Jan Jaworski <jajcoszek@protonmail.com> (https://github.com/Jajcoszek)",
+    "Robin Glaeser <1f2@xxxlgroup.com> (https://github.com/Sinf4er)",
+    "Katharina Kapfinger <kapf@xxxlgroup.com> (https://github.com/katduf)",
+    "Robert Jacobi <roj@xxxlgroup.com> (https://github.com/rohrlaf)",
+    "Sarah Berger <bers@xxxlgroup.com> (https://github.com/mtsarah)"
+  ],
+  "private": true,
+  "license": "MIT",
+  "dependencies": {
+    "@testing-library/jest-dom": "^4.2.4",
+    "@testing-library/react": "^9.3.2",
+    "@testing-library/user-event": "^7.1.2",
+    "@types/classnames": "^2.2.10",
+    "@types/jest": "^24.0.0",
+    "@types/node": "^12.0.0",
+    "@types/random-string": "^0.0.28",
+    "@types/react": "^16.9.0",
+    "@types/react-dom": "^16.9.8",
+    "@types/ws": "^7.2.6",
+    "classnames": "^2.2.6",
+    "node-sass": "^4.14.1",
+    "random-string": "^0.2.0",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1",
+    "react-router": "^5.2.0",
+    "react-router-config": "^5.1.1",
+    "react-router-dom": "^5.2.0",
+    "react-scripts": "3.4.1",
+    "run-p": "^0.0.0",
+    "typescript": "~3.7.2",
+    "ws": "^7.3.1"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject",
+    "lint": "run-p lint:js lint:css",
+    "lint:js": "eslint . --fix --ext .jsx,.tsx",
+    "lint:css": "sass-lint-auto-fix",
+    "lint:css:check": "sass-lint -v -q"
+  },
+  "eslintConfig": {
+    "extends": "react-app"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "devDependencies": {
+    "@types/react-router-dom": "^5.1.5",
+    "eslint": "^6.4.0",
+    "eslint-config-airbnb": "^18.0.1",
+    "eslint-config-prettier": "^6.11.0",
+    "eslint-plugin-import": "^2.21.2",
+    "eslint-plugin-jsx-a11y": "^6.2.3",
+    "eslint-plugin-prettier": "^3.1.1",
+    "eslint-plugin-react": "^7.20.0",
+    "husky": "^4.2.5",
+    "lint-staged": "^10.2.11",
+    "npm-run-all": "^4.1.5",
+    "prettier": "^1.18.2",
+    "pretty-quick": "^2.0.1",
+    "sass-lint": "^1.13.1",
+    "sass-lint-auto-fix": "^0.21.0"
+  }
+}
