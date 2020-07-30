@@ -4,9 +4,6 @@
       "night": ["special", "kill"]
     },
     {
-      "morning": ["find-victims"]
-    },
-    {
       "day": ["reveal"]
     },
     {
