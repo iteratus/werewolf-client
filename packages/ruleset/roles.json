@@ -17,7 +17,7 @@
   "wolf": {
     "name": "role.wolf.name",
     "actions": {
-      "night": "voteToKill"
+      "kill": "voteToKill"
     }
   }
 }
