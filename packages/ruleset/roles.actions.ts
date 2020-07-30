@@ -1,7 +1,7 @@
-export const voteToLynch = (): string => {
+export const voteToLynch = (): string[] => {
   // render list of other players
   // take vote
-  const voteOnPlayer = null;
+  const voteOnPlayer = [null];
   return voteOnPlayer;
 };
 
@@ -12,21 +12,23 @@ export const doubleVoteToLynch = (): string[] => {
   return voteOnPlayer;
 };
 
-export const randomVoteToLynch = (): string => {
-  return Math.random() ? "" : null;
+export const randomVoteToLynch = (): string[] => {
+  return [Math.random() ? "" : null];
 };
 
-export const voteToKill = (): string => {
-  const voteOnPlayer = null;
+export const voteToKill = (): string[] => {
+  const voteOnPlayer = [null];
   return voteOnPlayer;
 };
 
-export const chooseCouple = () => {
+export const chooseCouple = (): string[] => {
   // render list of all players
   // choose two players
   // set couple death action on player 1
   // set couple death action on players2
   // remove special action from amor/self
+  const couple = [null, null];
+  return couple;
 };
 
 export const revealMayor = () => {
