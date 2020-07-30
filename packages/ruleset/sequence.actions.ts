@@ -3,19 +3,19 @@ export const special = () => {
   // example: Amor defines couple
 };
 
-export const kill = (): string[] => {
+export const kill = (): Array<string> => {
   // killers vote on victim
   const victims = [null];
   return victims;
 };
 
-export const reveal = (): string[] => {
+export const reveal = (): Array<string> => {
   // reveal identities
   const players = [null];
   return players;
 };
 
-export const lynch = (): string[] => {
+export const lynch = (): Array<string> => {
   // reveal identities
   const players = [null];
   return players;

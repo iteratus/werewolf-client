@@ -1,27 +1,27 @@
-export const voteToLynch = (): string[] => {
+export const voteToLynch = (): Array<string> => {
   // render list of other players
   // take vote
   const voteOnPlayer = [null];
   return voteOnPlayer;
 };
 
-export const doubleVoteToLynch = (): string[] => {
+export const doubleVoteToLynch = (): Array<string> => {
   // render list of other players
   // take double vote
   const voteOnPlayer = [null, null];
   return voteOnPlayer;
 };
 
-export const randomVoteToLynch = (): string[] => {
+export const randomVoteToLynch = (): Array<string> => {
   return [Math.random() ? "" : null];
 };
 
-export const voteToKill = (): string[] => {
+export const voteToKill = (): Array<string> => {
   const voteOnPlayer = [null];
   return voteOnPlayer;
 };
 
-export const chooseCouple = (): string[] => {
+export const chooseCouple = (): Array<string> => {
   // render list of all players
   // choose two players
   // set couple death action on player 1
