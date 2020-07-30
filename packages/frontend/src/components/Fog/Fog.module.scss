@@ -11,7 +11,7 @@
     transform: translate(-50%, -50%);
   }
 
-  @for $i from 1 through 200 {
+  @for $i from 1 through 100 {
     &:nth-child(#{$i}) {
       top: random(100) + 1%;
       left: random(100) + 1%;
@@ -20,10 +20,10 @@
     }
 
     &:nth-child(#{$i}) &_graphic {
-      width: random(400) + 40px;
-      height: random(100) + 20px;
+      width: random(400) + 70px;
+      height: random(100) + 30px;
       background: rgb(random(255), random(255), random(255));
-      background: rgba(#fff, random(5) / 10);
+      background: rgba(#fff, random(5) / 8);
       filter: blur(random(30) + 30px);
 
       $pattern1: random(80) + 20;

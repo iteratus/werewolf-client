@@ -8,7 +8,7 @@ const Fog = (): JSX.Element => {
 
   const createFog = () => {
     const arrayOfFog = [];
-    for (let step = 0; step <= 200; step += 1) {
+    for (let step = 0; step <= 100; step += 1) {
       arrayOfFog.push(
         React.createElement(
           "div",
