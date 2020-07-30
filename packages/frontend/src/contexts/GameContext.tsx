@@ -1,8 +1,8 @@
 import { createContext } from "react";
 
-const DataContext = createContext({
+const GameContext = createContext({
   username: "",
   setUsername: (value: string) => {}
 });
 
-export default DataContext;
+export default GameContext;

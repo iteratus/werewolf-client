@@ -4,11 +4,12 @@ import React, {
   createRef,
   FormEvent,
   useRef,
+  useContext,
   MutableRefObject
 } from "react";
 import { withRouter } from "react-router";
 import { RouteComponentProps } from "react-router-dom";
-
+import SocketContext from "../../contexts/SocketContext";
 import styles from "./Lobby.module.scss";
 
 const Lobby = (props: RouteComponentProps): JSX.Element => {

@@ -11,7 +11,7 @@ import randomString from "random-string";
 import Header from "./components/Header";
 import User from "./pages/User";
 import Lobby from "./pages/Lobby";
-import GameContext from "./GameContext";
+import GameContext from "./contexts/GameContext";
 
 import styles from "./App.module.scss";
 
