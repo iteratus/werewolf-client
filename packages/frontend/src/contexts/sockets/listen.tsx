@@ -7,11 +7,13 @@ export const socketEvents = ({
 }: {
   setValue: React.Dispatch<React.SetStateAction<ValueState>>;
 }) => {
+  //example only; do not use
   socket.on("queueLength", ({ queueLength }: { queueLength: number }) => {
     setValue(state => {
       return { ...state, queueLength };
     });
   });
+  //example only; do not use
   socket.on(
     "positionInLine",
     ({ positionInLine }: { positionInLine: number }) => {
@@ -20,4 +22,8 @@ export const socketEvents = ({
       });
     }
   );
+
+  socket.on("henloClient", (message: string) => {
+    console.log(`server said: "${message}"`);
+  });
 };

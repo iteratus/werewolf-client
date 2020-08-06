@@ -1,35 +1,10 @@
-import React, {
-  useState,
-  useEffect,
-  createRef,
-  FormEvent,
-  useRef,
-  useContext,
-  MutableRefObject
-} from "react";
+import React, { useState, createRef, FormEvent } from "react";
 import { withRouter } from "react-router";
 import { RouteComponentProps } from "react-router-dom";
-import SocketContext from "../../contexts/SocketContext";
 import styles from "./Lobby.module.scss";
+import { henloServer } from "../../contexts/sockets/emit";
 
 const Lobby = (props: RouteComponentProps): JSX.Element => {
-  const ws: MutableRefObject<WebSocket | undefined> = useRef();
-  useEffect(() => {
-    ws.current = new WebSocket("ws://localhost:8668/ws");
-    ws.current.onopen = () => {
-      console.log("connected");
-      ws.current && ws.current.send("henlo werewolves");
-    };
-
-    ws.current.onmessage = event => {
-      console.log(event.data);
-    };
-
-    ws.current.onclose = () => {
-      console.log("disconnected");
-    };
-  }, []);
-
   const inputRef = createRef<HTMLInputElement>();
 
   const [message, setMessage] = useState("");
@@ -38,14 +13,16 @@ const Lobby = (props: RouteComponentProps): JSX.Element => {
     event.preventDefault();
 
     if (inputRef.current && inputRef.current.value !== "") {
-      ws.current && ws.current.send(inputRef.current.value);
+      henloServer(message);
     }
   };
 
   return (
     <main>
       <form onSubmit={sendMessage}>
-        <div className={styles.choose}>Henlo werewolves</div>
+        <div className={styles.choose}>
+          Henlo {localStorage.getItem("username")}
+        </div>
         <ul>
           <li>
             <label htmlFor="message">Message</label>

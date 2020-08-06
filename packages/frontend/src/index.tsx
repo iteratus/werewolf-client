@@ -1,6 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import SocketProvider from "./contexts";
+import SocketProvider from "./contexts/SocketProvider";
 import "./index.module.scss";
 import App from "./App";
 

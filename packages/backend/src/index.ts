@@ -1,20 +1,26 @@
-import express = require("express");
-import WebSocket = require("ws");
+import express from "express";
+import socketIo from "socket.io";
+import http from "http";
 
 const app: express.Application = express();
+const httpServer: http.Server = http.createServer(app);
+const io = socketIo(httpServer);
 
 app.get("/", function(req, res) {
   res.send("Hello World!");
 });
 
-app.listen(8666, function() {
-  console.log("App is listening on port 8666!");
+io.on("connection", socket => {
+  console.log("you are.");
+  socket.on("henloServer", message => {
+    console.log(`client sent: ${message}`);
+    socket.emit("henloClient", `you said: ${message}`);
+  });
+  socket.on("disconnect", () => {
+    console.log("you are not.");
+  });
 });
 
-const wss = new WebSocket.Server({ port: 8668 });
-
-wss.on("connection", (ws: WebSocket) => {
-  ws.on("message", (message: string) => {
-    ws.send(`received: ${message}`);
-  });
+httpServer.listen(8666, () => {
+  console.log("app listening on 8666");
 });
