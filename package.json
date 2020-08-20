@@ -1,4 +1,8 @@
 {
+  "private": true,
+  "workspaces": [
+    "packages/*"
+  ],
   "name": "werewolf",
   "version": "0.1.0",
   "repository": "git@github.com:iteratus/werewolf-client.git",
@@ -10,9 +14,10 @@
     "Robert Jacobi <roj@xxxlgroup.com> (https://github.com/rohrlaf)",
     "Sarah Berger <bers@xxxlgroup.com> (https://github.com/mtsarah)"
   ],
-  "private": true,
   "license": "MIT",
   "scripts": {
+    "backend:start": "yarn workspace werewolf-server start:dev",
+    "frontend:start": "yarn workspace werewolf-client start",
     "lint": "run-p lint:js lint:css",
     "lint:js": "eslint . --fix --ext .jsx,.tsx",
     "lint:css": "sass-lint-auto-fix",
