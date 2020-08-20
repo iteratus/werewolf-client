@@ -12,7 +12,7 @@ const Fog = (): JSX.Element => {
       arrayOfFog.push(
         React.createElement(
           "div",
-          { className: classNames(styles.fog) },
+          { className: classNames(styles.fog), key: step },
           fogContent
         )
       );
