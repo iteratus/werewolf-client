@@ -2,7 +2,7 @@ import { socket } from "./index";
 
 export const joinSession = () => {
   const payload = {
-    session: localStorage.getItem("sessionHash"),
+    session: localStorage.getItem("sessionId"),
     userId: localStorage.getItem("userId"),
     username: localStorage.getItem("username"),
   };
