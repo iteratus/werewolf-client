@@ -1,16 +1,16 @@
 import React, { useState, useEffect } from "react";
 import SocketContext from "./SocketContext";
-import { initSockets, ValueState } from "./sockets";
+import { initSockets, Session } from "./sockets";
 
 const SocketProvider = (props: { children: JSX.Element }) => {
-  const [value, setValue] = useState<ValueState>({
-    //examples only
-    queueLength: 0,
-    positionInLine: 0
+  const [session, setSession] = useState<Session>({
+    connectedUsers: Array<string>()
   });
-  useEffect(() => initSockets({ setValue }), []);
+
+  useEffect(() => initSockets({ setSession }), []);
+
   return (
-    <SocketContext.Provider value={value}>
+    <SocketContext.Provider value={session}>
       {props.children}
     </SocketContext.Provider>
   );

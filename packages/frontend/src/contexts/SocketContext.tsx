@@ -1,9 +1,7 @@
 import { createContext } from "react";
 
 const SocketContext = createContext({
-  //examples only
-  queueLength: 0,
-  positionInLine: 0
+  connectedUsers: Array<string>()
 });
 
 export default SocketContext;

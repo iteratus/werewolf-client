@@ -3,7 +3,7 @@ import {
   BrowserRouter as Router,
   Route,
   Redirect,
-  Switch
+  Switch,
 } from "react-router-dom";
 
 import randomString from "random-string";
@@ -25,14 +25,15 @@ const App = (): JSX.Element => {
   }
 
   const [username, setUsername] = useState(storedUsername || "");
+  const [session, setSession] = useState({ connectedUsers: Array<string>() });
 
   return (
     <Router>
-      <GameContext.Provider value={{ username, setUsername }}>
+      <GameContext.Provider value={{ username, setUsername, session, setSession }}>
         <div className={styles.app}>
           <Header />
           <Switch>
-            <Route exact path="/:session" component={MainApp} />
+            <Route exact path="/:sessionId" component={MainApp} />
             <Redirect to={`/${randomString()}`} />
           </Switch>
         </div>

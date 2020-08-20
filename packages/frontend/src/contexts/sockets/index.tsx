@@ -3,16 +3,15 @@ import io from "socket.io-client";
 import { socketEvents } from "./listen";
 
 export const socket = io("http://localhost:8666");
-export type ValueState = {
-  queueLength: number;
-  positionInLine: number;
+
+export type Session = {
+  connectedUsers: Array<string>
 };
+
 export const initSockets = ({
-  //example only; do not use
-  setValue
+  setSession
 }: {
-  setValue: React.Dispatch<React.SetStateAction<ValueState>>;
+  setSession: React.Dispatch<React.SetStateAction<Session>>;
 }) => {
-  socketEvents({ setValue });
-  // setValue    ^ is passed on to be used by socketEvents
+  socketEvents({ setSession });
 };

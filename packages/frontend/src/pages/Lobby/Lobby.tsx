@@ -1,13 +1,21 @@
-import React, { useState, createRef, FormEvent } from "react";
+import React, {useState, createRef, FormEvent, useEffect, useContext} from "react";
 import { withRouter } from "react-router";
 import { RouteComponentProps } from "react-router-dom";
 import styles from "./Lobby.module.scss";
-import { henloServer } from "../../contexts/sockets/emit";
+import { henloServer, joinSession } from "../../contexts/sockets/emit";
+import GameContext from "../../contexts/GameContext";
 
-const Lobby = (props: RouteComponentProps): JSX.Element => {
+interface LobbyMatchParams {
+  sessionId: string;
+}
+
+interface LobbyProps extends RouteComponentProps<LobbyMatchParams> { }
+
+const Lobby = (props: LobbyProps): JSX.Element => {
   const inputRef = createRef<HTMLInputElement>();
 
   const [message, setMessage] = useState("");
+  const { session } = useContext(GameContext);
 
   const sendMessage = (event: FormEvent) => {
     event.preventDefault();
@@ -17,8 +25,31 @@ const Lobby = (props: RouteComponentProps): JSX.Element => {
     }
   };
 
+  useEffect(() => {
+    const currentSessionId = props.match.params.sessionId;
+    const storedSessionId = localStorage.getItem("sessionId");
+
+    if (currentSessionId !== storedSessionId) {
+      localStorage.setItem("sessionId", currentSessionId);
+
+      // TODO: save new session, trigger new socket?
+
+    }
+    joinSession();
+  }, [props.match.params.sessionId]);
+
   return (
     <main>
+      {
+        session.connectedUsers && session.connectedUsers.length > 0 && (
+          <>
+            <p>Current connected users</p>
+            <ul>
+              {session.connectedUsers.map((user:string) => <li>{user}</li> )}
+            </ul>
+          </>
+        )
+      }
       <form onSubmit={sendMessage}>
         <div className={styles.choose}>
           Henlo {localStorage.getItem("username")}

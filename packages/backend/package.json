@@ -15,10 +15,12 @@
   "dependencies": {
     "@types/express": "^4.17.7",
     "@types/node": "^14.0.23",
+    "@types/random-string": "^0.0.28",
     "@types/socket.io": "^2.1.10",
     "@types/ws": "^7.2.6",
     "express": "^4.17.1",
     "nodemon": "^2.0.4",
+    "random-string": "^0.2.0",
     "socket.io": "^2.3.0",
     "typescript": "^3.9.7",
     "ws": "^7.3.1"
