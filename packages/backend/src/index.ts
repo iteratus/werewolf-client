@@ -8,7 +8,7 @@ const httpServer: http.Server = http.createServer(app);
 const io = socketIo(httpServer);
 
 app.get("/", function(req, res) {
-  res.send("Hello World!");
+  res.send("Henlo World!");
 });
 
 interface User {
@@ -73,6 +73,8 @@ io.on("connection", socket => {
       }
     }
 
+    socket.join(payload.session);
+
     const connectedUsers = Object.keys(sessionPool[payload.session]);
 
     const response: JoinResponse = {
@@ -82,7 +84,7 @@ io.on("connection", socket => {
 
     socket.emit("sessionJoined", response);
 
-    socket.broadcast.emit("connectedUsers", connectedUsers);
+    socket.to(payload.session).emit("connectedUsers", connectedUsers);
   });
 
   socket.on("henloServer", message => {

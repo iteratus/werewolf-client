@@ -12,7 +12,8 @@
     "Robin Glaeser <1f2@xxxlgroup.com> (https://github.com/Sinf4er)",
     "Katharina Kapfinger <kapf@xxxlgroup.com> (https://github.com/katduf)",
     "Robert Jacobi <roj@xxxlgroup.com> (https://github.com/rohrlaf)",
-    "Sarah Berger <bers@xxxlgroup.com> (https://github.com/mtsarah)"
+    "Sarah Berger <bers@xxxlgroup.com> (https://github.com/mtsarah)",
+    "David H. <dhn@xxxlgroup.com> (https://github.com/KasnocknDave)"
   ],
   "license": "MIT",
   "scripts": {
@@ -28,7 +29,7 @@
     "@typescript-eslint/eslint-plugin": "^3.6.1",
     "@typescript-eslint/parser": "^3.6.1",
     "babel-eslint": "^10.1.0",
-    "eslint": "^7.7.0",
+    "eslint": "^6.4.0",
     "eslint-config-airbnb": "^18.0.1",
     "eslint-config-prettier": "^6.11.0",
     "eslint-plugin-import": "^2.21.2",
