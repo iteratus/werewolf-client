@@ -12,59 +12,88 @@ app.get("/", function(req, res) {
 });
 
 interface User {
-  userId: string,
-  joined: Date
+  userId: string;
+  socketId: string;
+  joined: Date;
+  disconnected: Date | null;
+}
+
+interface UserList {
+  [key: string]: User;
+}
+
+interface GameState {
+  started: Date | null;
 }
 
 interface Session {
-  [ key: string ]: User
+  gameState: GameState;
+  userList: UserList;
 }
 
-interface SessionPool {
-  [ key: string ]: Session
+interface SessionList {
+  [key: string]: Session;
 }
 
 interface ErrorResponse {
-  errorCode: number,
-  errorMessage: string
+  errorCode: number;
+  errorMessage: string;
 }
 
 interface JoinPayload {
-  session: string,
-  userId: string,
-  username: string,
-  message: string,
+  session: string;
+  userId: string;
+  username: string;
+  message: string;
 }
 
 interface JoinResponse {
-  userId: string,
-  connectedUsers: Array<string>,
+  userId: string;
+  connectedUsers: Array<string>;
 }
 
-const sessionPool: SessionPool = {};
+const sessionList: SessionList = {};
+
+interface UserIdSessionHashTable {
+  [key: string]: UserIdSessionHashTableData;
+}
+
+interface UserIdSessionHashTableData {
+  session: string;
+  username: string;
+}
+
+const userIdSessionHashTable: UserIdSessionHashTable = {};
 
 io.on("connection", socket => {
   console.log("you are.");
 
   socket.on("joinSession", (payload: JoinPayload) => {
-    console.log(sessionPool, payload);
+    console.log(sessionList, payload);
 
-    if (!sessionPool[payload.session]) {
-      sessionPool[payload.session] = {};
+    if (!sessionList[payload.session]) {
+      sessionList[payload.session] = {
+        gameState: { started: null },
+        userList: {}
+      };
+
+      console.log("henlo session");
     }
 
-    if (!sessionPool[payload.session][payload.username]) {
-      sessionPool[payload.session][payload.username] = {
+    if (!sessionList[payload.session].userList[payload.username]) {
+      sessionList[payload.session].userList[payload.username] = {
         userId: randomString(),
-        joined: new Date()
+        socketId: socket.id,
+        joined: new Date(),
+        disconnected: null
       };
     } else {
-      const user = sessionPool[payload.session][payload.username];
+      const user = sessionList[payload.session].userList[payload.username];
 
       if (user.userId !== payload.userId) {
         const response: ErrorResponse = {
           errorCode: 409,
-          errorMessage: "Conflict: User already in use",
+          errorMessage: "Conflict: User already in use"
         };
 
         socket.emit("sessionJoinedError", response);
@@ -73,13 +102,18 @@ io.on("connection", socket => {
       }
     }
 
+    userIdSessionHashTable[socket.id] = {
+      session: payload.session,
+      username: payload.username
+    };
+
     socket.join(payload.session);
 
-    const connectedUsers = Object.keys(sessionPool[payload.session]);
+    const connectedUsers = Object.keys(sessionList[payload.session].userList);
 
     const response: JoinResponse = {
-      userId: sessionPool[payload.session][payload.username].userId,
-      connectedUsers,
+      userId: sessionList[payload.session].userList[payload.username].userId,
+      connectedUsers
     };
 
     socket.emit("sessionJoined", response);
@@ -93,7 +127,22 @@ io.on("connection", socket => {
   });
 
   socket.on("disconnect", () => {
+    // TODO: Don't delete user here, only set disconnected state!
+    // TODO: introduce leaveGame event
+    // TODO: Don't forget timeout
+
+    const { session, username } = userIdSessionHashTable[socket.id];
+
+    delete userIdSessionHashTable[socket.id];
+    delete sessionList[session].userList[username];
+
     console.log("you are not.");
+
+    if (Object.keys(sessionList[session].userList).length < 1) {
+      delete sessionList[session];
+
+      console.log("olneh session");
+    }
   });
 });
 
