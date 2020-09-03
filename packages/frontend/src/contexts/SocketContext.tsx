@@ -1,7 +1,14 @@
 import { createContext } from "react";
 
+interface Session {
+  connectedUsers: Array<string>
+};
+
 const SocketContext = createContext({
-  connectedUsers: Array<string>()
+  session: {
+    connectedUsers: Array<string>()
+  },
+  setSession: (session: Session) => {},
 });
 
 export default SocketContext;
