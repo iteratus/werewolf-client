@@ -65,6 +65,17 @@
     ]
   },
   "devDependencies": {
+    "@testing-library/dom": "^7.22.3",
+    "@testing-library/jest-dom": "^4.2.4",
+    "@testing-library/react": "^9.3.2",
+    "@testing-library/user-event": "^7.1.2",
+    "@types/classnames": "^2.2.10",
+    "@types/jest": "^24.0.0",
+    "@types/node": "^12.0.0",
+    "@types/random-string": "^0.0.28",
+    "@types/react": "^16.9.0",
+    "@types/react-dom": "^16.9.8",
+    "@types/ws": "^7.2.6",
     "@types/react-router-dom": "^5.1.5",
     "eslint": "^6.4.0",
     "eslint-config-airbnb": "^18.0.1",
