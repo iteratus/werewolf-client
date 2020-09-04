@@ -22,7 +22,7 @@ want to get the best out of it! Here are the planned features:
 
 ## How to start
 
-After installing all dependencies with executing `yarn`,
+After installing all dependencies with executing `yarn` (or the equivalent npm command),
 
 use `yarn backend:start` to start the nodejs server which handles all socket connections and the gameplay.
 
