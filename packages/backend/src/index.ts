@@ -127,7 +127,6 @@ io.on("connection", socket => {
   });
 
   socket.on("disconnect", () => {
-    // TODO: Don't delete user here, only set disconnected state!
     // TODO: introduce leaveGame event
     // TODO: Don't forget timeout
 
