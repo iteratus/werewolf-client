@@ -31,10 +31,8 @@ const Lobby = (props: LobbyProps): JSX.Element => {
 
     if (currentSessionId !== storedSessionId) {
       localStorage.setItem("sessionId", currentSessionId);
-
-      // TODO: save new session, trigger new socket?
-
     }
+
     joinSession();
   }, [props.match.params.sessionId]);
 
