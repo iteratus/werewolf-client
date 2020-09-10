@@ -127,8 +127,6 @@ io.on("connection", socket => {
   });
 
   socket.on("disconnect", () => {
-    // TODO: Don't forget timeout
-
     const { session, username } = userIdSessionHashTable[socket.id];
 
     delete userIdSessionHashTable[socket.id];
