@@ -1,0 +1,11 @@
+.app {
+  height: 100vh;
+  background: no-repeat center/cover image-set(
+      "img/app-background-1.jpg" 1x,
+      "img/app-background-2.jpg" 2x,
+      "img/app-background-3.jpg" 3x
+  );
+
+  position: relative;
+  overflow: hidden;
+}

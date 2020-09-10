@@ -1,66 +1,27 @@
 $space: 4vw;
 $animation-duration: 1s;
 
+.lobby {
+  padding: 0 2rem;
+}
+
 .choose {
   display: flex;
   flex-grow: 1;
+  color: #fff;
 }
 
-.column {
-  flex: 1 0 auto;
-  margin: $space 0 $space $space;
-
-  &:last-child {
-    margin-right: $space;
-  }
-}
-
-.button {
+form {
+  text-align: center;
   position: relative;
-  width: 100%;
-  height: 100%;
-  border-radius: 50%;
-}
+  z-index: 2;
 
-.icon {
-  width: 100%;
-  height: 100%;
-  color: #fd0;
-  border-radius: 50%;
-
-  &.neutral {
-    color: #eee;
+  ul {
+    padding: 0;
   }
 
-  &.sad {
-    color: #ed5740;
-  }
-
-  &.checkCircle {
-    position: absolute;
-    color: #01befe;
-    opacity: 0;
-
-    [class*='active'] & {
-      animation: blendOut ease-out #{$animation-duration};
-    }
-  }
-}
-
-@keyframes blendOut {
-  0% {
-    opacity: 1;
-  }
-
-  33% {
-    opacity: 1;
-  }
-
-  40% {
-    opacity: 0.9;
-  }
-
-  100% {
-    opacity: 0;
+  li {
+    list-style: none;
+    color: #fff;
   }
 }
