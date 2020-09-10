@@ -127,7 +127,6 @@ io.on("connection", socket => {
   });
 
   socket.on("disconnect", () => {
-    // TODO: introduce leaveGame event
     // TODO: Don't forget timeout
 
     const { session, username } = userIdSessionHashTable[socket.id];
