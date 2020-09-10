@@ -8,15 +8,15 @@ import {
 
 import randomString from "random-string";
 
-import Fog from "./components/Fog";
-import Header from "./components/Header";
-import User from "./pages/User";
-import Lobby from "./pages/Lobby";
-import SocketContext from "./contexts/SocketContext";
-import GameContext from "./contexts/GameContext";
+import Fog from "../../components/Fog";
+import Header from "../../components/Header";
+import User from "../User";
+import Lobby from "../Lobby";
+import SocketContext from "../../contexts/SocketContext";
+import GameContext from "../../contexts/GameContext";
 
 import styles from "./App.module.scss";
-import {initSockets} from "./contexts/sockets";
+import {initSockets} from "../../contexts/sockets";
 
 const App = (): JSX.Element => {
   let MainApp = Lobby;
