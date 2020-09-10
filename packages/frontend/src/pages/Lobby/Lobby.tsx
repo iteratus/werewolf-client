@@ -1,64 +1,69 @@
-import React, {
-  useState,
-  useEffect,
-  createRef,
-  FormEvent,
-  useRef,
-  MutableRefObject
-} from "react";
+import React, {useState, createRef, FormEvent, useEffect, useContext} from "react";
 import { withRouter } from "react-router";
 import { RouteComponentProps } from "react-router-dom";
-
 import styles from "./Lobby.module.scss";
+import { henloServer, joinSession } from "../../contexts/sockets/emit";
+import GameContext from "../../contexts/GameContext";
 
-const Lobby = (props: RouteComponentProps): JSX.Element => {
-  const ws: MutableRefObject<WebSocket | undefined> = useRef();
-  useEffect(() => {
-    ws.current = new WebSocket("ws://localhost:8668/ws");
-    ws.current.onopen = () => {
-      console.log("connected");
-      ws.current && ws.current.send("henlo werewolves");
-    };
+interface LobbyMatchParams {
+  sessionId: string;
+}
 
-    ws.current.onmessage = event => {
-      console.log(event.data);
-    };
+interface LobbyProps extends RouteComponentProps<LobbyMatchParams> { }
 
-    ws.current.onclose = () => {
-      console.log("disconnected");
-    };
-  }, []);
-
+const Lobby = (props: LobbyProps): JSX.Element => {
   const inputRef = createRef<HTMLInputElement>();
 
   const [message, setMessage] = useState("");
+  const { session } = useContext(GameContext);
 
   const sendMessage = (event: FormEvent) => {
     event.preventDefault();
 
     if (inputRef.current && inputRef.current.value !== "") {
-      ws.current && ws.current.send(inputRef.current.value);
+      henloServer(message);
     }
   };
 
+  useEffect(() => {
+    const currentSessionId = props.match.params.sessionId;
+    const storedSessionId = localStorage.getItem("sessionId");
+
+    if (currentSessionId !== storedSessionId) {
+      localStorage.setItem("sessionId", currentSessionId);
+    }
+
+    joinSession();
+  }, [props.match.params.sessionId]);
+
   return (
-    <main className={styles.lobby}>
+    <main>
+      {
+        session.connectedUsers && session.connectedUsers.length > 0 && (
+          <>
+            <p>Current connected users</p>
+            <ul>
+              {session.connectedUsers.map((user:string) => <li>{user}</li> )}
+            </ul>
+          </>
+        )
+      }
       <form onSubmit={sendMessage}>
-        <div className={styles.choose}>Henlo {localStorage.getItem('username')}</div>
+        <div className={styles.choose}>
+          Henlo {localStorage.getItem("username")}
+        </div>
         <ul>
           <li>
-            <label htmlFor="message">
-              Message
-              <input
-                id="message"
-                ref={inputRef}
-                type="text"
-                value={message}
-                onChange={() => {
-                  setMessage(inputRef.current ? inputRef.current.value : "");
-                }}
-              />
-            </label>
+            <label htmlFor="message">Message</label>
+            <input
+              id="message"
+              ref={inputRef}
+              type="text"
+              value={message}
+              onChange={() => {
+                setMessage(inputRef.current ? inputRef.current.value : "");
+              }}
+            />
           </li>
           <li>
             <button type="submit">Send</button>

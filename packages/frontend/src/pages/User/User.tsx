@@ -1,7 +1,7 @@
 import React, { createRef, FormEvent, useContext, useState } from "react";
 import { withRouter } from "react-router";
 import { RouteComponentProps } from "react-router-dom";
-import GameContext from "../../GameContext";
+import GameContext from "../../contexts/GameContext";
 
 import styles from "./User.module.scss";
 
