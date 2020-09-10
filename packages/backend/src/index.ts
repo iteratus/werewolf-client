@@ -5,7 +5,7 @@ import randomString from "random-string";
 
 const app: express.Application = express();
 const httpServer: http.Server = http.createServer(app);
-const io = socketIo(httpServer);
+const io: socketIo.Server = socketIo(httpServer);
 
 app.get("/", function(req, res) {
   res.send("Henlo World!");
