@@ -27,11 +27,11 @@ const userIdRoomMap: UserIdRoomMap = {};
 io.on("connection", socket => {
   console.log("you are.");
 
-  socket.on("joinSession", (payload: EnterRoomPayload) => {
+  socket.on("joinRoom", (payload: EnterRoomPayload) => {
     console.log(roomList, payload);
 
-    if (!roomList[payload.session]) {
-      roomList[payload.session] = {
+    if (!roomList[payload.room]) {
+      roomList[payload.room] = {
         gameState: { started: null },
         userList: {}
       };
@@ -39,15 +39,15 @@ io.on("connection", socket => {
       console.log("henlo room");
     }
 
-    if (!roomList[payload.session].userList[payload.username]) {
-      roomList[payload.session].userList[payload.username] = {
+    if (!roomList[payload.room].userList[payload.username]) {
+      roomList[payload.room].userList[payload.username] = {
         userId: randomString(),
         socketId: socket.id,
         joined: new Date(),
         disconnected: null
       };
     } else {
-      const user = roomList[payload.session].userList[payload.username];
+      const user = roomList[payload.room].userList[payload.username];
 
       if (user.userId !== payload.userId) {
         const response: ErrorResponse = {
@@ -55,29 +55,29 @@ io.on("connection", socket => {
           errorMessage: "Conflict: User already in use"
         };
 
-        socket.emit("sessionJoinedError", response);
+        socket.emit("roomJoinedError", response);
 
         return;
       }
     }
 
     userIdRoomMap[socket.id] = {
-      room: payload.session,
+      room: payload.room,
       username: payload.username
     };
 
-    socket.join(payload.session);
+    socket.join(payload.room);
 
-    const connectedUsers = Object.keys(roomList[payload.session].userList);
+    const connectedUsers = Object.keys(roomList[payload.room].userList);
 
     const response: EnterRoomResponse = {
-      userId: roomList[payload.session].userList[payload.username].userId,
+      userId: roomList[payload.room].userList[payload.username].userId,
       connectedUsers
     };
 
-    socket.emit("sessionJoined", response);
+    socket.emit("roomJoined", response);
 
-    socket.to(payload.session).emit("connectedUsers", connectedUsers);
+    socket.to(payload.room).emit("connectedUsers", connectedUsers);
   });
 
   socket.on("henloServer", message => {

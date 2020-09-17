@@ -4,7 +4,7 @@ export interface EnterRoomResponse {
 }
 
 export interface EnterRoomPayload {
-  session: string;
+  room: string;
   userId: string;
   username: string;
   message: string;

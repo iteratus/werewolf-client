@@ -1,5 +1,5 @@
 interface UserIdRoomMapData {
-  session: string;
+  room: string;
   username: string;
 }
 

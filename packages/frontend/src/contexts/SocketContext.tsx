@@ -1,14 +1,14 @@
 import { createContext } from "react";
 
-interface Session {
+interface Room {
   connectedUsers: Array<string>
 };
 
 const SocketContext = createContext({
-  session: {
+  room: {
     connectedUsers: Array<string>()
   },
-  setSession: (session: Session) => {},
+  setRoom: (room: Room) => {},
 });
 
 export default SocketContext;

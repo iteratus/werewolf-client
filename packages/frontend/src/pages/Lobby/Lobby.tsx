@@ -2,11 +2,11 @@ import React, {useState, createRef, FormEvent, useEffect, useContext} from "reac
 import { withRouter } from "react-router";
 import { RouteComponentProps } from "react-router-dom";
 import styles from "./Lobby.module.scss";
-import { henloServer, joinSession } from "../../contexts/sockets/emit";
+import { henloServer, joinRoom } from "../../contexts/sockets/emit";
 import GameContext from "../../contexts/GameContext";
 
 interface LobbyMatchParams {
-  sessionId: string;
+  roomId: string;
 }
 
 interface LobbyProps extends RouteComponentProps<LobbyMatchParams> { }
@@ -15,7 +15,7 @@ const Lobby = (props: LobbyProps): JSX.Element => {
   const inputRef = createRef<HTMLInputElement>();
 
   const [message, setMessage] = useState("");
-  const { session } = useContext(GameContext);
+  const { room } = useContext(GameContext);
 
   const sendMessage = (event: FormEvent) => {
     event.preventDefault();
@@ -26,24 +26,24 @@ const Lobby = (props: LobbyProps): JSX.Element => {
   };
 
   useEffect(() => {
-    const currentSessionId = props.match.params.sessionId;
-    const storedSessionId = localStorage.getItem("sessionId");
+    const currentRoomId = props.match.params.roomId;
+    const storedRoomId = localStorage.getItem("roomId");
 
-    if (currentSessionId !== storedSessionId) {
-      localStorage.setItem("sessionId", currentSessionId);
+    if (currentRoomId !== storedRoomId) {
+      localStorage.setItem("roomId", currentRoomId);
     }
 
-    joinSession();
-  }, [props.match.params.sessionId]);
+    joinRoom();
+  }, [props.match.params.roomId]);
 
   return (
     <main>
       {
-        session.connectedUsers && session.connectedUsers.length > 0 && (
+        room.connectedUsers && room.connectedUsers.length > 0 && (
           <>
             <p>Current connected users</p>
             <ul>
-              {session.connectedUsers.map((user:string) => <li>{user}</li> )}
+              {room.connectedUsers.map((user:string) => <li>{user}</li> )}
             </ul>
           </>
         )

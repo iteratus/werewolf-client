@@ -4,14 +4,14 @@ import { socketEvents } from "./listen";
 
 export const socket = io("http://localhost:8666");
 
-export type Session = {
+export type Room = {
   connectedUsers: Array<string>
 };
 
 export const initSockets = ({
-  setSession
+  setRoom
 }: {
-  setSession: React.Dispatch<React.SetStateAction<Session>>;
+  setRoom: React.Dispatch<React.SetStateAction<Room>>;
 }) => {
-  socketEvents({ setSession });
+  socketEvents({ setRoom });
 };

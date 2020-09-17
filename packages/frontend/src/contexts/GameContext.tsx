@@ -1,16 +1,16 @@
 import { createContext } from "react";
 
-interface Session {
+interface Room {
   connectedUsers: Array<string>
 };
 
 const GameContext = createContext({
   username: "",
   setUsername: (value: string) => {},
-  session: {
+  room: {
     connectedUsers: Array<string>()
   },
-  setSession: (session: Session) => {},
+  setRoom: (room: Room) => {},
 });
 
 export default GameContext;

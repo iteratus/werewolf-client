@@ -28,19 +28,19 @@ const App = (): JSX.Element => {
   }
 
   const [username, setUsername] = useState(storedUsername || "");
-  const [session, setSession] = useState({ connectedUsers: Array<string>() });
+  const [room, setRoom] = useState({ connectedUsers: Array<string>() });
 
-  useEffect(() => initSockets({ setSession }), []);
+  useEffect(() => initSockets({ setRoom }), []);
 
   return (
     <Router>
-      <SocketContext.Provider value={{ session, setSession }}>
-        <GameContext.Provider value={{ username, setUsername, session, setSession }}>
+      <SocketContext.Provider value={{ room, setRoom }}>
+        <GameContext.Provider value={{ username, setUsername, room, setRoom }}>
           <div className={styles.app}>
             <Fog />
             <Header />
             <Switch>
-              <Route exact path="/:sessionId" component={MainApp} />
+              <Route exact path="/:roomId" component={MainApp} />
               <Redirect to={`/${randomString()}`} />
             </Switch>
           </div>
