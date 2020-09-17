@@ -3,92 +3,51 @@ import socketIo from "socket.io";
 import http from "http";
 import randomString from "random-string";
 
+import ErrorResponse from "./interfaces/socket/ErrorResponse";
+import {
+  EnterRoomPayload,
+  EnterRoomResponse
+} from "./interfaces/socket/EnterRoom";
+import RoomList from "./interfaces/game/RoomList";
+import UserIdRoomMap from "./interfaces/game/UserIdRoomMap";
+
 const app: express.Application = express();
 const httpServer: http.Server = http.createServer(app);
+
 const io: socketIo.Server = socketIo(httpServer);
 
 app.get("/", function(req, res) {
   res.send("Henlo World!");
 });
 
-interface User {
-  userId: string;
-  socketId: string;
-  joined: Date;
-  disconnected: Date | null;
-}
+const roomList: RoomList = {};
 
-interface UserList {
-  [key: string]: User;
-}
-
-interface GameState {
-  started: Date | null;
-}
-
-interface Session {
-  gameState: GameState;
-  userList: UserList;
-}
-
-interface SessionList {
-  [key: string]: Session;
-}
-
-interface ErrorResponse {
-  errorCode: number;
-  errorMessage: string;
-}
-
-interface JoinPayload {
-  session: string;
-  userId: string;
-  username: string;
-  message: string;
-}
-
-interface JoinResponse {
-  userId: string;
-  connectedUsers: Array<string>;
-}
-
-const sessionList: SessionList = {};
-
-interface UserIdSessionHashTable {
-  [key: string]: UserIdSessionHashTableData;
-}
-
-interface UserIdSessionHashTableData {
-  session: string;
-  username: string;
-}
-
-const userIdSessionHashTable: UserIdSessionHashTable = {};
+const userIdRoomMap: UserIdRoomMap = {};
 
 io.on("connection", socket => {
   console.log("you are.");
 
-  socket.on("joinSession", (payload: JoinPayload) => {
-    console.log(sessionList, payload);
+  socket.on("joinRoom", (payload: EnterRoomPayload) => {
+    console.log(roomList, payload);
 
-    if (!sessionList[payload.session]) {
-      sessionList[payload.session] = {
+    if (!roomList[payload.room]) {
+      roomList[payload.room] = {
         gameState: { started: null },
         userList: {}
       };
 
-      console.log("henlo session");
+      console.log("henlo room");
     }
 
-    if (!sessionList[payload.session].userList[payload.username]) {
-      sessionList[payload.session].userList[payload.username] = {
+    if (!roomList[payload.room].userList[payload.username]) {
+      roomList[payload.room].userList[payload.username] = {
         userId: randomString(),
         socketId: socket.id,
         joined: new Date(),
         disconnected: null
       };
     } else {
-      const user = sessionList[payload.session].userList[payload.username];
+      const user = roomList[payload.room].userList[payload.username];
 
       if (user.userId !== payload.userId) {
         const response: ErrorResponse = {
@@ -96,29 +55,29 @@ io.on("connection", socket => {
           errorMessage: "Conflict: User already in use"
         };
 
-        socket.emit("sessionJoinedError", response);
+        socket.emit("roomJoinedError", response);
 
         return;
       }
     }
 
-    userIdSessionHashTable[socket.id] = {
-      session: payload.session,
+    userIdRoomMap[socket.id] = {
+      room: payload.room,
       username: payload.username
     };
 
-    socket.join(payload.session);
+    socket.join(payload.room);
 
-    const connectedUsers = Object.keys(sessionList[payload.session].userList);
+    const connectedUsers = Object.keys(roomList[payload.room].userList);
 
-    const response: JoinResponse = {
-      userId: sessionList[payload.session].userList[payload.username].userId,
+    const response: EnterRoomResponse = {
+      userId: roomList[payload.room].userList[payload.username].userId,
       connectedUsers
     };
 
-    socket.emit("sessionJoined", response);
+    socket.emit("roomJoined", response);
 
-    socket.to(payload.session).emit("connectedUsers", connectedUsers);
+    socket.to(payload.room).emit("connectedUsers", connectedUsers);
   });
 
   socket.on("henloServer", message => {
@@ -127,17 +86,17 @@ io.on("connection", socket => {
   });
 
   socket.on("disconnect", () => {
-    const { session, username } = userIdSessionHashTable[socket.id];
+    const { room, username } = userIdRoomMap[socket.id];
 
-    delete userIdSessionHashTable[socket.id];
-    delete sessionList[session].userList[username];
+    delete userIdRoomMap[socket.id];
+    delete roomList[room].userList[username];
 
     console.log("you are not.");
 
-    if (Object.keys(sessionList[session].userList).length < 1) {
-      delete sessionList[session];
+    if (Object.keys(roomList[room].userList).length < 1) {
+      delete roomList[room];
 
-      console.log("olneh session");
+      console.log("olneh room");
     }
   });
 });

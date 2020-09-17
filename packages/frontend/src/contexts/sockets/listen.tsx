@@ -1,8 +1,8 @@
 import React from "react";
 import { socket } from "./index";
-import { Session } from "./index";
+import { Room } from "./index";
 
-interface SessionJoinedResponse {
+interface RoomJoinedResponse {
   userId: string,
   connectedUsers: Array<string>
 }
@@ -13,9 +13,9 @@ interface ErrorResponse {
 }
 
 export const socketEvents = ({
-  setSession
+  setRoom
 }: {
-  setSession: React.Dispatch<React.SetStateAction<Session>>;
+  setRoom: React.Dispatch<React.SetStateAction<Room>>;
 }) => {
   // //example only; do not use
   // socket.on("queueLength", ({ queueLength }: { queueLength: number }) => {
@@ -38,18 +38,18 @@ export const socketEvents = ({
     console.log(`server said: "${message}"`);
   });
 
-  socket.on("sessionJoined", (response: SessionJoinedResponse) => {
+  socket.on("roomJoined", (response: RoomJoinedResponse) => {
     localStorage.setItem("userId", response.userId);
 
-    setSession({ connectedUsers: response.connectedUsers });
+    setRoom({ connectedUsers: response.connectedUsers });
   });
 
   socket.on("connectedUsers", (connectedUsers: Array<string>) => {
     console.log(connectedUsers);
-    setSession({ connectedUsers });
+    setRoom({ connectedUsers });
   });
 
-  socket.on("sessionJoinedError", (response: ErrorResponse) => {
+  socket.on("roomJoinedError", (response: ErrorResponse) => {
     switch (response.errorCode) {
       case 409:
         alert("HACKER-ALARM!");
