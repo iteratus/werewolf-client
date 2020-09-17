@@ -1,12 +1,9 @@
 import React from "react";
 import io from "socket.io-client";
 import { socketEvents } from "./listen";
+import Room from "../../interfaces/Room";
 
 export const socket = io("http://localhost:8666");
-
-export type Room = {
-  connectedUsers: Array<string>
-};
 
 export const initSockets = ({
   setRoom

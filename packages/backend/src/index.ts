@@ -27,7 +27,7 @@ const userIdRoomMap: UserIdRoomMap = {};
 io.on("connection", socket => {
   console.log("you are.");
 
-  socket.on("joinRoom", (payload: EnterRoomPayload) => {
+  socket.on("enterRoom", (payload: EnterRoomPayload) => {
     console.log(roomList, payload);
 
     if (!roomList[payload.room]) {
@@ -55,7 +55,7 @@ io.on("connection", socket => {
           errorMessage: "Conflict: User already in use"
         };
 
-        socket.emit("roomJoinedError", response);
+        socket.emit("enterRoomError", response);
 
         return;
       }
@@ -75,7 +75,7 @@ io.on("connection", socket => {
       connectedUsers
     };
 
-    socket.emit("roomJoined", response);
+    socket.emit("roomEntered", response);
 
     socket.to(payload.room).emit("connectedUsers", connectedUsers);
   });

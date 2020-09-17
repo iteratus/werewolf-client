@@ -1,8 +1,6 @@
 import { createContext } from "react";
 
-interface Room {
-  connectedUsers: Array<string>
-};
+import Room from "../interfaces/Room";
 
 const GameContext = createContext({
   username: "",

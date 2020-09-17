@@ -1,16 +1,8 @@
 import React from "react";
 import { socket } from "./index";
-import { Room } from "./index";
-
-interface RoomJoinedResponse {
-  userId: string,
-  connectedUsers: Array<string>
-}
-
-interface ErrorResponse {
-  errorCode: number,
-  errorMessage: string
-}
+import Room from "../../interfaces/Room";
+import { EnterRoomResponse } from "../../interfaces/socket/EnterRoom";
+import ErrorResponse from "../../interfaces/socket/ErrorResponse";
 
 export const socketEvents = ({
   setRoom
@@ -38,7 +30,7 @@ export const socketEvents = ({
     console.log(`server said: "${message}"`);
   });
 
-  socket.on("roomJoined", (response: RoomJoinedResponse) => {
+  socket.on("roomEntered", (response: EnterRoomResponse) => {
     localStorage.setItem("userId", response.userId);
 
     setRoom({ connectedUsers: response.connectedUsers });
@@ -49,7 +41,7 @@ export const socketEvents = ({
     setRoom({ connectedUsers });
   });
 
-  socket.on("roomJoinedError", (response: ErrorResponse) => {
+  socket.on("enterRoomError", (response: ErrorResponse) => {
     switch (response.errorCode) {
       case 409:
         alert("HACKER-ALARM!");

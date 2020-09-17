@@ -2,7 +2,7 @@ import React, {useState, createRef, FormEvent, useEffect, useContext} from "reac
 import { withRouter } from "react-router";
 import { RouteComponentProps } from "react-router-dom";
 import styles from "./Lobby.module.scss";
-import { henloServer, joinRoom } from "../../contexts/sockets/emit";
+import { henloServer, enterRoom } from "../../contexts/sockets/emit";
 import GameContext from "../../contexts/GameContext";
 
 interface LobbyMatchParams {
@@ -33,7 +33,7 @@ const Lobby = (props: LobbyProps): JSX.Element => {
       localStorage.setItem("roomId", currentRoomId);
     }
 
-    joinRoom();
+    enterRoom();
   }, [props.match.params.roomId]);
 
   return (

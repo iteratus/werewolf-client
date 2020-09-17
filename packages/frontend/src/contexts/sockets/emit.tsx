@@ -1,13 +1,13 @@
 import { socket } from "./index";
 
-export const joinRoom = () => {
+export const enterRoom = () => {
   const payload = {
     room: localStorage.getItem("roomId"),
     userId: localStorage.getItem("userId"),
     username: localStorage.getItem("username"),
   };
 
-  socket.emit("joinRoom", payload);
+  socket.emit("enterRoom", payload);
 };
 
 export const henloServer = (message: string) => {
