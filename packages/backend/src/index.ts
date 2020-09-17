@@ -3,67 +3,24 @@ import socketIo from "socket.io";
 import http from "http";
 import randomString from "random-string";
 
+import ErrorResponse from "./interfaces/socket/ErrorResponse";
+import JoinPayload from "./interfaces/socket/JoinPayload";
+import JoinResponse from "./interfaces/socket/JoinResponse";
+import SessionList from "./interfaces/game/SessionList";
+import UserIdSessionMap from "./interfaces/game/UserIdSessionMap";
+
 const app: express.Application = express();
 const httpServer: http.Server = http.createServer(app);
+
 const io: socketIo.Server = socketIo(httpServer);
 
 app.get("/", function(req, res) {
   res.send("Henlo World!");
 });
 
-interface User {
-  userId: string;
-  socketId: string;
-  joined: Date;
-  disconnected: Date | null;
-}
-
-interface UserList {
-  [key: string]: User;
-}
-
-interface GameState {
-  started: Date | null;
-}
-
-interface Session {
-  gameState: GameState;
-  userList: UserList;
-}
-
-interface SessionList {
-  [key: string]: Session;
-}
-
-interface ErrorResponse {
-  errorCode: number;
-  errorMessage: string;
-}
-
-interface JoinPayload {
-  session: string;
-  userId: string;
-  username: string;
-  message: string;
-}
-
-interface JoinResponse {
-  userId: string;
-  connectedUsers: Array<string>;
-}
-
 const sessionList: SessionList = {};
 
-interface UserIdSessionHashTable {
-  [key: string]: UserIdSessionHashTableData;
-}
-
-interface UserIdSessionHashTableData {
-  session: string;
-  username: string;
-}
-
-const userIdSessionHashTable: UserIdSessionHashTable = {};
+const userIdSessionMap: UserIdSessionMap = {};
 
 io.on("connection", socket => {
   console.log("you are.");
@@ -102,7 +59,7 @@ io.on("connection", socket => {
       }
     }
 
-    userIdSessionHashTable[socket.id] = {
+    userIdSessionMap[socket.id] = {
       session: payload.session,
       username: payload.username
     };
@@ -127,9 +84,9 @@ io.on("connection", socket => {
   });
 
   socket.on("disconnect", () => {
-    const { session, username } = userIdSessionHashTable[socket.id];
+    const { session, username } = userIdSessionMap[socket.id];
 
-    delete userIdSessionHashTable[socket.id];
+    delete userIdSessionMap[socket.id];
     delete sessionList[session].userList[username];
 
     console.log("you are not.");
