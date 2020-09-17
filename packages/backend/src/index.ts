@@ -17,7 +17,7 @@ const httpServer: http.Server = http.createServer(app);
 const io: socketIo.Server = socketIo(httpServer);
 
 app.get("/", function(req, res) {
-  res.send("Henlo World!");
+  res.send("HENLO World!");
 });
 
 const roomList: RoomList = {};
@@ -36,7 +36,7 @@ io.on("connection", socket => {
         userList: {}
       };
 
-      console.log("henlo room");
+      console.log("HENLO room");
     }
 
     if (!roomList[payload.room].userList[payload.username]) {
@@ -96,7 +96,7 @@ io.on("connection", socket => {
     if (Object.keys(roomList[room].userList).length < 1) {
       delete roomList[room];
 
-      console.log("olneh room");
+      console.log("OLNEH room");
     }
   });
 });
