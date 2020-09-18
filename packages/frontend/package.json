@@ -1,15 +1,6 @@
 {
   "name": "werewolf-client",
   "version": "0.1.0",
-  "repository": "git@github.com:iteratus/werewolf-client.git",
-  "author": "Michael Huber <code@iteratus.com> (https://code.iteratus.com)",
-  "contributors": [
-    "Jan Jaworski <jajcoszek@protonmail.com> (https://github.com/Jajcoszek)",
-    "Robin Glaeser <1f2@xxxlgroup.com> (https://github.com/Sinf4er)",
-    "Katharina Kapfinger <kapf@xxxlgroup.com> (https://github.com/katduf)",
-    "Robert Jacobi <roj@xxxlgroup.com> (https://github.com/rohrlaf)",
-    "Sarah Berger <bers@xxxlgroup.com> (https://github.com/mtsarah)"
-  ],
   "private": true,
   "license": "MIT",
   "dependencies": {
@@ -22,6 +13,8 @@
     "@types/random-string": "^0.0.28",
     "@types/react": "^16.9.0",
     "@types/react-dom": "^16.9.8",
+    "@types/socket.io": "^2.1.10",
+    "@types/socket.io-client": "^1.4.33",
     "@types/ws": "^7.2.6",
     "classnames": "^2.2.6",
     "node-sass": "^4.14.1",
@@ -33,6 +26,7 @@
     "react-router-dom": "^5.2.0",
     "react-scripts": "3.4.1",
     "run-p": "^0.0.0",
+    "socket.io": "^2.3.0",
     "typescript": "~3.7.2",
     "ws": "^7.3.1"
   },
@@ -62,6 +56,17 @@
     ]
   },
   "devDependencies": {
+    "@testing-library/dom": "^7.22.3",
+    "@testing-library/jest-dom": "^4.2.4",
+    "@testing-library/react": "^9.3.2",
+    "@testing-library/user-event": "^7.1.2",
+    "@types/classnames": "^2.2.10",
+    "@types/jest": "^24.0.0",
+    "@types/node": "^12.0.0",
+    "@types/random-string": "^0.0.28",
+    "@types/react": "^16.9.0",
+    "@types/react-dom": "^16.9.8",
+    "@types/ws": "^7.2.6",
     "@types/react-router-dom": "^5.1.5",
     "eslint": "^6.4.0",
     "eslint-config-airbnb": "^18.0.1",

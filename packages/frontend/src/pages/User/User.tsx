@@ -1,7 +1,7 @@
 import React, { createRef, FormEvent, useContext, useState } from "react";
 import { withRouter } from "react-router";
 import { RouteComponentProps } from "react-router-dom";
-import GameContext from "../../GameContext";
+import GameContext from "../../contexts/GameContext";
 
 import styles from "./User.module.scss";
 
@@ -29,16 +29,18 @@ const User = (props: RouteComponentProps): JSX.Element => {
         </div>
         <ul>
           <li>
-            <label htmlFor="username">Username</label>
-            <input
-              id="username"
-              ref={inputRef}
-              type="text"
-              value={username}
-              onChange={() => {
-                setUsername(inputRef.current ? inputRef.current.value : "");
-              }}
-            />
+            <label htmlFor="username">
+              Username
+              <input
+                id="username"
+                ref={inputRef}
+                type="text"
+                value={username}
+                onChange={() => {
+                  setUsername(inputRef.current ? inputRef.current.value : "");
+                }}
+              />
+            </label>
           </li>
           <li>
             <button type="submit">Play!</button>
