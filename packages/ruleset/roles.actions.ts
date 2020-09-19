@@ -21,6 +21,48 @@ export const voteToKill = (): Array<string> => {
   return voteOnPlayer;
 };
 
+export const chooseToTransform = (): Array<string> => {
+  // render list of all villagers
+  // choose player
+  // set new role to selected player
+  // remove special action from alpha/self
+  const newWerewolf = [null];
+  return newWerewolf;
+};
+
+export const decideToShoot = (): Array<string> => {
+  // render list of all other players
+  // choose player
+  // remove special action from hunter/self
+  const deadPlayer = [null];
+  return deadPlayer;
+};
+
+export const checkIdentity = (): Array<string> => {
+  // render list of all other players
+  // choose player
+  // show seer role from selected player
+  const role = [null];
+  return role;
+};
+
+export const decideToPoisen = (): Array<string> => {
+  // render list of all other player
+  // choose player
+  // remove special action from witch/self
+  const voteOnPlayer = [null];
+  return voteOnPlayer;
+};
+
+export const decideToRevive = (): Array<string> => {
+  // render list of dead players
+  // choose player
+  // revive player
+  // remove special action from witch/self
+  const voteOnPlayer = [null];
+  return voteOnPlayer;
+};
+
 export const chooseCouple = (): Array<string> => {
   // render list of all players
   // choose two players

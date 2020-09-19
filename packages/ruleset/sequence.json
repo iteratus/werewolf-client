@@ -1,7 +1,7 @@
 {
   "sequence": [
     {
-      "night": ["special", "kill"]
+      "night": ["special", "kill", "witch"]
     },
     {
       "day": ["reveal"]
