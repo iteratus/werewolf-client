@@ -1,0 +1,28 @@
+{
+  "role.alphaWolf.name": "Alpha wolf",
+  "role.alphaWolf.description": "This character plays for the werewolves and can turn another player into a werewolf once in the game. After this the player loses all his previous skills and will from this point on plays for the werewolves.",
+
+  "role.amor.name": "Cupid",
+  "role.amor.description": "In this game too, the Roman god of love has the ability that two other people falling in love. These lovers then have the goal of winning together. If they belong to different groups (werewolves, villagers), they must kill all other players in order to win. If one person in love dies, the other commits suicide out of grief. After that, the cupid is a normal villager.",
+
+  "role.hunter.name": "Hunter",
+  "role.hunter.description": "It is better not to kill the hunter, because this experienced shooter can, after one last grip on his shotgun, shoot one player at the moment of his death. So be careful!",
+
+  "role.mayor.name": "Mayor",
+  "role.mayor.description": "An important character in the game. He gets half a vote more to prevent stalemates in voting.",
+
+  "role.seer.name": "Seer",
+  "role.seer.description": "The seer can look behind the masquerade of every other player and find out his true identity. He can see the identity of one player every night.",
+
+  "role.villager.name": "Villager",
+  "role.villager.description": "The villagers form the counterpart to the werewolves. Their task is to uncover all the shady characters to win the game.",
+
+  "role.werewolf.name": "Werewolf",
+  "role.werewolf.description": "The werewolves have infiltrated the village and are trying to exterminate the villagers by killing one of them every night. To do this, they vote for a victim that they want to kill. The werewolves win when they wipe out all of the villagers.",
+
+  "role.witch.name": "Witch",
+  "role.witch.description": "The witch is known for her potions science and has the ability to heal the victim of the werewolves with a healing potion or to kill a player with a death potion. Both potions can brew them only once in the game.",
+
+  "role.wolfMan.name": "Wolf man",
+  "role.wolfMan.description": "The wolfman might look like a werewolf on the outside, but he plays for the villagers. Many characters see him as a werewolf, so he should be careful."
+}
