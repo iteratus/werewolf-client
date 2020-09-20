@@ -17,6 +17,7 @@ import GameContext from "../../contexts/GameContext";
 
 import styles from "./App.module.scss";
 import {initSockets} from "../../contexts/sockets";
+import "../../translations/translations";
 
 const App = (): JSX.Element => {
   let MainApp = Lobby;
