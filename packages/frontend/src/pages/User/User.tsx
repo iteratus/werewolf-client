@@ -6,17 +6,20 @@ import GameContext from "../../contexts/GameContext";
 import styles from "./User.module.scss";
 
 const User = (props: RouteComponentProps): JSX.Element => {
-  const inputRef = createRef<HTMLInputElement>();
+  const userInputRef = createRef<HTMLInputElement>();
+  const LobbyInputRef = createRef<HTMLInputElement>();
 
   const [username, setUsername] = useState("");
-  const { setUsername: setContextUsername } = useContext(GameContext);
+  const [lobby, setLobby] = useState("");
+  const [isHidden, setIsHidden] = useState(true);
+  const { setUsername: setContextUsername} = useContext(GameContext);
 
   const saveChanges = (event: FormEvent) => {
     event.preventDefault();
 
-    if (inputRef.current && inputRef.current.value !== "") {
-      localStorage.setItem("username", inputRef.current.value);
-      setContextUsername(inputRef.current.value);
+    if (userInputRef.current && userInputRef.current.value !== "") {
+      localStorage.setItem("username", userInputRef.current.value);
+      setContextUsername(userInputRef.current.value);
     }
   };
 
@@ -33,17 +36,34 @@ const User = (props: RouteComponentProps): JSX.Element => {
               Username
               <input
                 id="username"
-                ref={inputRef}
+                ref={userInputRef}
                 type="text"
                 value={username}
                 onChange={() => {
-                  setUsername(inputRef.current ? inputRef.current.value : "");
+                  setUsername(userInputRef.current ? userInputRef.current.value : "");
                 }}
               />
             </label>
           </li>
           <li>
-            <button type="submit">Play!</button>
+            <button type="submit">Create new Lobby</button>
+          </li>
+          <li>
+            <button onClick={() => {setIsHidden(false)}}>Join existing Lobby</button>
+          </li>
+          <li className={isHidden ? styles.isHidden : styles.isVisible}>
+            <label htmlFor="lobby">
+              Lobby
+              <input
+                id="lobby"
+                ref={LobbyInputRef}
+                type="text"
+                value={lobby}
+                onChange={() => {
+                  setLobby(LobbyInputRef.current ? LobbyInputRef.current.value : "");
+                }}
+              />
+            </label>
           </li>
         </ul>
       </form>

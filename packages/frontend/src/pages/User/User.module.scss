@@ -1,2 +1,12 @@
 $space: 4vw;
 $animation-duration: 1s;
+
+.isHidden {
+  visibility: hidden;
+  opacity: 0;
+}
+
+.isVisible {
+  visibility: visible;
+  opacity: 1;
+}
