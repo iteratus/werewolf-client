@@ -1,0 +1,28 @@
+{
+  "role.alphaWolf.name": "Alpha Wolf",
+  "role.alphaWolf.description": "Dieser Charakter spielt für die Werwölfe und kann einmal im Spiel einen anderen Mitspieler zu einem Werwolf machen. Dieser Spieler verliert dann alle seine bisherigen Fähigkeiten und spielt ab diesem Zeitpunkt für die Werwölfe.",
+
+  "role.amor.name": "Amor",
+  "role.amor.description": "Der römische Gott der Liebe besitzt auch in diesem Spiel die Fähigkeit, zwei Personen zu verlieben. Diese Verliebten haben dann das Ziel, gemeinsam zu gewinnen. Wenn sie unterschiedlichen Gruppierungen (Werwölfe, Dorfbewohner) angehören, müssen sie alle anderen Spieler töten, um zu gewinnen. Stirbt ein Verliebter, begeht auch der andere aus Trauer Selbstmord. Danach ist der Amor ein normaler Dorfbewohner.",
+
+  "role.hunter.name": "Jäger",
+  "role.hunter.description": "Den Jäger sollte man lieber nicht töten, denn dieser geübte Schütze kann, nach einem letzten Griff zu seiner Flinte, in dem Moment seines Todes einen Spieler mit in den Tod reißen. Nehmt euch also in acht!",
+
+  "role.mayor.name": "Bürgermeister",
+  "role.mayor.description": "Ein wichtiger Charakter im Spiel. Er bekommt eine halbe Stimme mehr um Pattsituationen bei Abstimmungen zu verhindern.",
+
+  "role.seer.name": "Seher",
+  "role.seer.description": "Der Seher kann hinter die Masquerade eines jeden Mitspielers blicken und dessen wahre Identität herausfinden. Er kann also jede Nacht die Identität eines Spielers sehen.",
+
+  "role.villager.name": "Dorfbewohner",
+  "role.villager.description": "Die Dorfbewohner bilden das Gegenstück zu den Werwölfen. Sie haben die Aufgabe alle zwielichtigen Gestalten zu entarnen und dadurch das Spiel zu gewinnen.",
+
+  "role.werewolf.name": "Werwolf",
+  "role.werewolf.description": "Die Werwölfe haben das Dorf infiltriert und versuchen, die Dorfbewohner auszurotten, indem sie jede Nacht einen von ihnen ermorden. Dazu stimmen sie in der Nacht einstimmig für ein Opfer ab, das sie töten wollen. Die Werwölfe gewinnen, wenn sie alle Dorfbewohner ausgerottet haben.",
+
+  "role.witch.name": "Hexe",
+  "role.witch.description": "Die Hexe ist durch ihre Tränkekunde bekannt und besitzt die Fähigkeit, mit einem Heiltrank das Opfer der Werwölfe noch in der Nacht zu heilen, oder mit einem Todestrank einen Spieler in der Nacht zu töten. Beide Tränke kann sie allerdings nur jeweils einmal im Spiel brauen.",
+
+  "role.wolfMan.name": "Wolfsmensch",
+  "role.wolfMan.description": "Der Wolfsmensch mag vielleicht äußerlich wie ein Werwolf aussehen, spielt aber für die Dorfbewohner. Viele Charaktere sehen ihn allerdings als Werwolf, also sollte er auf der Hut sein."
+}

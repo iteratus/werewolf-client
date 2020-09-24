@@ -4,6 +4,7 @@ import { RouteComponentProps } from "react-router-dom";
 import styles from "./Lobby.module.scss";
 import { henloServer, enterRoom } from "../../contexts/sockets/emit";
 import GameContext from "../../contexts/GameContext";
+import i18n from 'i18next';
 
 interface LobbyMatchParams {
   roomId: string;
@@ -41,7 +42,7 @@ const Lobby = (props: LobbyProps): JSX.Element => {
       {
         room.connectedUsers && room.connectedUsers.length > 0 && (
           <>
-            <p>Current connected users</p>
+            <p>{i18n.t('page.lobby.userList')}</p>
             <ul>
               {room.connectedUsers.map((user:string) => <li>{user}</li> )}
             </ul>
