@@ -43,7 +43,6 @@ const Lobby = (props: LobbyProps): JSX.Element => {
         room.connectedUsers && room.connectedUsers.length > 0 && (
           <>
             <p>{i18n.t('page.lobby.userList')}</p>
-            <p>Current connected users</p>
             <ul>
               {room.connectedUsers.map((user:string) => <li>{user}</li> )}
             </ul>
