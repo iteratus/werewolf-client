@@ -2,6 +2,7 @@ import React, { createRef, FormEvent, useContext, useState } from "react";
 import { withRouter } from "react-router";
 import { RouteComponentProps } from "react-router-dom";
 import GameContext from "../../contexts/GameContext";
+import i18n from 'i18next';
 
 import styles from "./User.module.scss";
 
@@ -26,18 +27,16 @@ const User = (props: RouteComponentProps): JSX.Element => {
   return (
     <main className={styles.user}>
       <form onSubmit={saveChanges}>
-        <div>
-          We would like to know who we will kill soon. So please identify
-          yourself.
-        </div>
+        <div>{i18n.t('page.user.identify')}</div>
         <ul>
           <li>
             <label htmlFor="username">
-              Username
+              {i18n.t('page.user.label.username')}
               <input
                 id="username"
                 ref={userInputRef}
                 type="text"
+                placeholder={i18n.t('page.user.input.username')}
                 value={username}
                 onChange={() => {
                   setUsername(userInputRef.current ? userInputRef.current.value : "");
