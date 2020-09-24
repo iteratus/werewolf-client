@@ -1,8 +1,9 @@
 {
-  "page.user.identify": "We would like to know who we will kill soon. So please identify yourself.",
-  "page.user.input.username": "Mad Max",
-  "page.user.label.username": "User",
-  "page.user.play": "Play!",
+  "page.henlo.identify": "We would like to know who we will kill soon. So please identify yourself.",
+  "page.henlo.input.username": "Mad Max",
+  "page.henlo.label.username": "User",
+  "page.henlo.play": "Play!",
+  "page.henlo.joinRoom": "Join Room",
 
-  "page.lobby.userList": "Current connected users"
+  "page.room.userList": "Current connected users"
 }

@@ -4,15 +4,20 @@ import { RouteComponentProps } from "react-router-dom";
 import GameContext from "../../contexts/GameContext";
 import i18n from 'i18next';
 
-import styles from "./User.module.scss";
+import styles from "./Henlo.module.scss";
 
-const User = (props: RouteComponentProps): JSX.Element => {
+interface HenloMatchParams {
+  roomId?: string;
+}
+
+interface HenloProps extends RouteComponentProps<HenloMatchParams> { }
+
+const Henlo = (props: HenloProps): JSX.Element => {
   const userInputRef = createRef<HTMLInputElement>();
-  const LobbyInputRef = createRef<HTMLInputElement>();
+  const roomInputRef = createRef<HTMLInputElement>();
 
   const [username, setUsername] = useState("");
-  const [lobby, setLobby] = useState("");
-  const [isHidden, setIsHidden] = useState(true);
+  const [room, setRoom] = useState(props.match.params.roomId);
   const { setUsername: setContextUsername} = useContext(GameContext);
 
   const saveChanges = (event: FormEvent) => {
@@ -27,16 +32,16 @@ const User = (props: RouteComponentProps): JSX.Element => {
   return (
     <main className={styles.user}>
       <form onSubmit={saveChanges}>
-        <div>{i18n.t('page.user.identify')}</div>
+        <div>{i18n.t('page.henlo.identify')}</div>
         <ul>
           <li>
             <label htmlFor="username">
-              {i18n.t('page.user.label.username')}
+              {i18n.t('page.henlo.label.username')}
               <input
                 id="username"
                 ref={userInputRef}
                 type="text"
-                placeholder={i18n.t('page.user.input.username')}
+                placeholder={i18n.t('page.henlo.input.username')}
                 value={username}
                 onChange={() => {
                   setUsername(userInputRef.current ? userInputRef.current.value : "");
@@ -45,24 +50,21 @@ const User = (props: RouteComponentProps): JSX.Element => {
             </label>
           </li>
           <li>
-            <button type="submit">Create new Lobby</button>
-          </li>
-          <li>
-            <button onClick={() => {setIsHidden(false)}}>Join existing Lobby</button>
-          </li>
-          <li className={isHidden ? styles.isHidden : styles.isVisible}>
-            <label htmlFor="lobby">
-              Lobby
+            <label htmlFor="room">
+              Room
               <input
-                id="lobby"
-                ref={LobbyInputRef}
+                id="room"
+                ref={roomInputRef}
                 type="text"
-                value={lobby}
+                value={room}
                 onChange={() => {
-                  setLobby(LobbyInputRef.current ? LobbyInputRef.current.value : "");
+                  setRoom(roomInputRef.current ? roomInputRef.current.value : "");
                 }}
               />
             </label>
+          </li>
+          <li>
+            <button>{i18n.t('page.henlo.joinRoom')}</button>
           </li>
         </ul>
       </form>
@@ -70,4 +72,4 @@ const User = (props: RouteComponentProps): JSX.Element => {
   );
 };
 
-export default withRouter(User);
+export default withRouter(Henlo);

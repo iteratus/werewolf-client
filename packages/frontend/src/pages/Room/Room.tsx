@@ -1,18 +1,18 @@
 import React, {useState, createRef, FormEvent, useEffect, useContext} from "react";
 import { withRouter } from "react-router";
 import { RouteComponentProps } from "react-router-dom";
-import styles from "./Lobby.module.scss";
+import styles from "./Room.module.scss";
 import { henloServer, enterRoom } from "../../contexts/sockets/emit";
 import GameContext from "../../contexts/GameContext";
 import i18n from 'i18next';
 
-interface LobbyMatchParams {
+interface RoomMatchParams {
   roomId: string;
 }
 
-interface LobbyProps extends RouteComponentProps<LobbyMatchParams> { }
+interface RoomProps extends RouteComponentProps<RoomMatchParams> { }
 
-const Lobby = (props: LobbyProps): JSX.Element => {
+const Room = (props: RoomProps): JSX.Element => {
   const inputRef = createRef<HTMLInputElement>();
 
   const [message, setMessage] = useState("");
@@ -42,7 +42,7 @@ const Lobby = (props: LobbyProps): JSX.Element => {
       {
         room.connectedUsers && room.connectedUsers.length > 0 && (
           <>
-            <p>{i18n.t('page.lobby.userList')}</p>
+            <p>{i18n.t('page.room.userList')}</p>
             <ul>
               {room.connectedUsers.map((user:string) => <li>{user}</li> )}
             </ul>
@@ -75,4 +75,4 @@ const Lobby = (props: LobbyProps): JSX.Element => {
   );
 };
 
-export default withRouter(Lobby);
+export default withRouter(Room);
