@@ -1,2 +1,10 @@
-$space: 4vw;
-$animation-duration: 1s;
+.form {
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
