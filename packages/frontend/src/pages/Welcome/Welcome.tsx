@@ -1,0 +1,67 @@
+import React, { createRef, FormEvent, useContext, useState } from "react";
+import { withRouter } from "react-router";
+import { RouteComponentProps, Redirect } from "react-router-dom";
+import GameContext from "../../contexts/GameContext";
+import i18n from 'i18next';
+
+import randomString from "random-string";
+
+import styles from "./Welcome.module.scss";
+
+interface WelcomeMatchParams {
+  roomId?: string;
+}
+
+interface WelcomeProps extends RouteComponentProps<WelcomeMatchParams> { }
+
+const Welcome = (props: WelcomeProps): JSX.Element => {
+  const userInputRef = createRef<HTMLInputElement>();
+
+  const [username, setUsername] = useState("");
+  const [redirect, setRedirect] = useState("");
+
+  const { setUsername: setContextUsername} = useContext(GameContext);
+
+  const handleJoin = () => {
+    if (userInputRef.current && userInputRef.current.value !== "") {
+      localStorage.setItem("username", userInputRef.current.value);
+      setContextUsername(userInputRef.current.value);
+
+      setRedirect(`/${randomString()}`);
+    }
+  }
+
+  if (redirect !== "") {
+    return <Redirect to={redirect}/>
+  } else {
+    return (
+      <main className={styles.user}>
+        <form onSubmit={handleJoin}>
+          <div>{i18n.t('page.welcome.identify')}</div>
+          <ul>
+            <li>
+              <label htmlFor="username">
+                {i18n.t('page.welcome.label.username')}
+                <input
+                  id="username"
+                  ref={userInputRef}
+                  type="text"
+                  placeholder={i18n.t('page.welcome.input.username')}
+                  value={username}
+                  onChange={() => {
+                    setUsername(userInputRef.current ? userInputRef.current.value : "");
+                  }}
+                />
+              </label>
+            </li>
+            <li>
+              <button onClick={() => { handleJoin(); }}>{i18n.t('page.welcome.joinRoom')}</button>
+            </li>
+          </ul>
+        </form>
+      </main>
+    );
+  }
+};
+
+export default withRouter(Welcome);

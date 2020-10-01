@@ -10,7 +10,7 @@ import randomString from "random-string";
 
 import Fog from "../../components/Fog";
 import Header from "../../components/Header";
-import Henlo from "../Henlo";
+import Welcome from "../Welcome";
 import Room from "../Room";
 import SocketContext from "../../contexts/SocketContext";
 import GameContext from "../../contexts/GameContext";
@@ -20,13 +20,7 @@ import {initSockets} from "../../contexts/sockets";
 import "../../translations/i18nInit";
 
 const App = (): JSX.Element => {
-  let MainApp = Room;
-
   const storedUsername = localStorage.getItem("username");
-
-  if (!storedUsername) {
-    MainApp = Henlo;
-  }
 
   const [username, setUsername] = useState(storedUsername || "");
   const [room, setRoom] = useState({ connectedUsers: Array<string>() });
@@ -41,8 +35,8 @@ const App = (): JSX.Element => {
             <Fog />
             <Header />
             <Switch>
-              <Route exact path="/" component={MainApp} />
-              <Route exact path="/:roomId" component={MainApp} />
+              <Route exact path="/" component={Welcome} />
+              <Route exact path="/:roomId" component={Room} />
               <Redirect to={`/${randomString()}`} />
             </Switch>
           </div>
