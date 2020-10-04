@@ -1,6 +1,3 @@
-$space: 4vw;
-$animation-duration: 1s;
-
 .lobby {
   padding: 0 2rem;
 }
@@ -8,18 +5,4 @@ $animation-duration: 1s;
 .choose {
   display: flex;
   flex-grow: 1;
-}
-
-form {
-  position: relative;
-  z-index: 2;
-  text-align: center;
-
-  ul {
-    padding: 0;
-  }
-
-  li {
-    list-style: none;
-  }
 }
