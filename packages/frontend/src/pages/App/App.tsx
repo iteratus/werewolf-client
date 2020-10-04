@@ -37,12 +37,13 @@ const App = (): JSX.Element => {
       <SocketContext.Provider value={{ room, setRoom }}>
         <GameContext.Provider value={{ username, setUsername, room, setRoom }}>
           <div className={styles.app}>
-            <Fog />
-            <Header />
-            <Switch>
-              <Route exact path="/:roomId" component={MainApp} />
-              <Redirect to={`/${randomString()}`} />
-            </Switch>
+            <div className={styles.contentWrapper}>
+              <Header />
+              <Switch>
+                <Route exact path="/:roomId" component={MainApp} />
+                <Redirect to={`/${randomString()}`} />
+              </Switch>
+            </div>
           </div>
         </GameContext.Provider>
       </SocketContext.Provider>

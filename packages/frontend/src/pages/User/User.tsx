@@ -23,13 +23,14 @@ const User = (props: RouteComponentProps): JSX.Element => {
 
   return (
     <main className={styles.user}>
-      <form onSubmit={saveChanges}>
-        <div>{i18n.t('page.user.identify')}</div>
+      <form className={styles.userForm} onSubmit={saveChanges}>
+      <div className={styles.userInfo}>{i18n.t('page.user.identify')}</div>
         <ul>
           <li>
             <label htmlFor="username">
               {i18n.t('page.user.label.username')}
               <input
+                className={styles.userInput}
                 id="username"
                 ref={inputRef}
                 type="text"
@@ -42,7 +43,7 @@ const User = (props: RouteComponentProps): JSX.Element => {
             </label>
           </li>
           <li>
-            <button type="submit">{i18n.t('page.user.play')}</button>
+            <button className={styles.userButton} type="submit">{i18n.t('page.user.play')}</button>
           </li>
         </ul>
       </form>

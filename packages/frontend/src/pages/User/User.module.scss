@@ -1,2 +1,55 @@
-$space: 4vw;
-$animation-duration: 1s;
+@import "src/style-config/settings";
+
+.userInfo {
+  font-weight: 300;
+  text-align: center;
+  width: 100%;
+}
+
+.userForm {
+  text-align: left;
+  position: absolute;
+  margin: 0 0 0 -1rem;
+  padding: 1rem;
+  bottom: 0;
+  z-index: 2;
+
+  ul {
+    padding: 0;
+  }
+
+  li {
+    list-style: none;
+  }
+
+  @include media-breakpoint-up(xs) {
+    position: relative;
+    max-width: 768px;
+    margin: 0 auto;
+  }
+
+}
+
+.userInput {
+  width: calc(100% - 2rem);
+  width: -webkit-fill-available;
+  margin: .5rem 0;
+  padding: 2rem;
+  border-width: 0;
+  border-radius: 5px;
+  background: $darkgrey;
+  box-shadow: inset 5px 5px 10px #2b3034,
+  inset -5px -5px 10px #3b4046;
+}
+
+.userButton {
+  width: 100%;
+  color: $lightgrey;
+  margin-top: 1rem;
+  padding: 2rem;
+  border-width: 0;
+  border-radius: 5px;
+  background: $darkgrey;
+  box-shadow:  5px 5px 10px #2b3034,
+  -5px -5px 10px #3b4046;
+}
