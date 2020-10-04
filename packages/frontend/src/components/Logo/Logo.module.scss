@@ -1,6 +1,10 @@
 @import "src/style-config/settings";
 
 .logo {
-  width: 180px;
+  width: 140px;
   margin-top: 2rem;
+
+  @include media-breakpoint-up(xs) {
+    width: 180px;
+  }
 }

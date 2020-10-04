@@ -40,35 +40,41 @@ const Lobby = (props: LobbyProps): JSX.Element => {
 
   return (
     <main>
+      <div className={styles.welcome}>
+        Henlo {localStorage.getItem("username")}
+      </div>
       {
         room.connectedUsers && room.connectedUsers.length > 0 && (
-          <>
+          <div className={styles.userList}>
             <p>{i18n.t('page.lobby.userList')}</p>
             <ul>
-              {room.connectedUsers.map((user:string) => <li>{user}</li> )}
+              {room.connectedUsers.map((user:string) =>
+                <li className={styles.singleUser}>
+                  <img alt='adorable user avatar' className={styles.userImage} src={`https://api.adorable.io/avatars/${user}`} />
+                  {user}
+                </li> )}
             </ul>
-          </>
+          </div>
         )
       }
-      <form onSubmit={sendMessage}>
-        <div className={styles.choose}>
-          Henlo {localStorage.getItem("username")}
-        </div>
+      <form className={styles.messageForm} onSubmit={sendMessage}>
         <ul>
           <li>
             <label htmlFor="message">Message</label>
             <input
+              className={styles.messageInput}
               id="message"
               ref={inputRef}
               type="text"
               value={message}
+              placeholder={"Write something..."}
               onChange={() => {
                 setMessage(inputRef.current ? inputRef.current.value : "");
               }}
             />
           </li>
           <li>
-            <button type="submit">Send</button>
+            <button className={styles.messageButton} type="submit">Send</button>
           </li>
         </ul>
       </form>
