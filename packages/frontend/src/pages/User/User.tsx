@@ -1,10 +1,10 @@
 import React, { createRef, FormEvent, useContext, useState } from "react";
 import { withRouter } from "react-router";
 import { RouteComponentProps } from "react-router-dom";
-import GameContext from "../../contexts/GameContext";
+import GameContext from "contexts/GameContext";
 import i18n from 'i18next';
 
-import styles from "./User.module.scss";
+import styles from "pages/User/User.module.scss";
 
 const User = (props: RouteComponentProps): JSX.Element => {
   const inputRef = createRef<HTMLInputElement>();

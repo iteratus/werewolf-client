@@ -1,7 +1,8 @@
 import React from "react";
-import logoImg from "./img/logo.svg";
 
-import styles from "./Logo.module.scss";
+import logoImg from "components/Logo/img/logo.svg";
+
+import styles from "components/Logo/Logo.module.scss";
 
 const Logo = (): JSX.Element => (
   <a href="/">

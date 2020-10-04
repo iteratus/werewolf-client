@@ -1,10 +1,11 @@
 import React, {useState, createRef, FormEvent, useEffect, useContext} from "react";
 import { withRouter } from "react-router";
 import { RouteComponentProps } from "react-router-dom";
-import styles from "./Lobby.module.scss";
-import { henloServer, enterRoom } from "../../contexts/sockets/emit";
-import GameContext from "../../contexts/GameContext";
+import { henloServer, enterRoom } from "contexts/sockets/emit";
+import GameContext from "contexts/GameContext";
 import i18n from 'i18next';
+
+import styles from "pages/Lobby/Lobby.module.scss";
 
 interface LobbyMatchParams {
   roomId: string;
