@@ -1,8 +1,8 @@
 import React from "react";
 import { socket } from "./index";
-import Room from "../../interfaces/Room";
-import { EnterRoomResponse } from "../../interfaces/socket/EnterRoom";
-import ErrorResponse from "../../interfaces/socket/ErrorResponse";
+import Room from "interfaces/Room";
+import { EnterRoomResponse } from "interfaces/socket/EnterRoom";
+import ErrorResponse from "interfaces/socket/ErrorResponse";
 
 export const socketEvents = ({
   setRoom

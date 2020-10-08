@@ -1,23 +1,12 @@
 @import "src/style-config/settings";
 
-.lobby {
-  padding: 0 2rem;
-}
-
-.welcome {
+.userInfo {
+  font-weight: 300;
   text-align: center;
-}
-
-.userList {
-  max-width: 768px;
-  margin: 2rem auto;
-  text-align: center;
-  padding: 1rem;
-  @include neumorphismIn();
-}
-
-.messageForm {
   width: 100%;
+}
+
+.userForm {
   text-align: left;
   position: absolute;
   margin: 0 0 0 -1rem;
@@ -29,23 +18,11 @@
     position: relative;
     max-width: 768px;
     margin: 0 auto;
-    padding: 0;
   }
+
 }
 
-.singleUser {
-  display: flex;
-  align-items: center;
-  margin: .5rem;
-}
-
-.userImage {
-  height: 45px;
-  border-radius: 5px;
-  margin-right: 1rem;
-}
-
-.messageInput {
+.userInput {
   width: calc(100% - 2rem);
   width: -webkit-fill-available;
   margin: .5rem 0;
@@ -53,7 +30,7 @@
   @include neumorphismIn();
 }
 
-.messageButton {
+.userButton {
   width: 100%;
   color: $lightgrey;
   margin-top: 1rem;
