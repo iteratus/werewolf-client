@@ -33,11 +33,12 @@ const App = (): JSX.Element => {
           <div className={styles.app}>
             <div className={styles.contentWrapper}>
               <Header />
-              <Switch>
-                <Route exact path="/" component={Welcome} />
-                <Route exact path="/:roomId" component={Room} />
-                <Redirect to={`/${randomString()}`} />
-              </Switch>
+                { username === "" ? <Welcome /> : (
+                  <Switch>
+                    <Route exact path="/:roomId" component={Room} />
+                    <Redirect to={`/${randomString()}`} />
+                  </Switch>
+                ) }
             </div>
           </div>
         </GameContext.Provider>

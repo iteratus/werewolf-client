@@ -1,11 +1,11 @@
 @import "src/style-config/settings";
 
 .app {
-  height: 100vh;
-  background: $darkgrey;
-  color: $lightgrey;
   position: relative;
+  height: 100vh;
   overflow: hidden;
+  color: $lightgrey;
+  background: $darkgrey;
 }
 
 .contentWrapper {

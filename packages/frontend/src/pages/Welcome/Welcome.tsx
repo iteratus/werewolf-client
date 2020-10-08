@@ -1,10 +1,8 @@
-import React, { createRef, FormEvent, useContext, useState } from "react";
+import React, { createRef, useContext, useState } from "react";
 import { withRouter } from "react-router";
-import { RouteComponentProps, Redirect } from "react-router-dom";
-import GameContext from "../../contexts/GameContext";
+import { RouteComponentProps } from "react-router-dom";
+import GameContext from "contexts/GameContext";
 import i18n from 'i18next';
-
-import randomString from "random-string";
 
 import styles from "./Welcome.module.scss";
 
@@ -18,7 +16,6 @@ const Welcome = (props: WelcomeProps): JSX.Element => {
   const userInputRef = createRef<HTMLInputElement>();
 
   const [username, setUsername] = useState("");
-  const [redirect, setRedirect] = useState("");
 
   const { setUsername: setContextUsername} = useContext(GameContext);
 
@@ -26,14 +23,9 @@ const Welcome = (props: WelcomeProps): JSX.Element => {
     if (userInputRef.current && userInputRef.current.value !== "") {
       localStorage.setItem("username", userInputRef.current.value);
       setContextUsername(userInputRef.current.value);
-
-      setRedirect(`/${randomString()}`);
     }
   }
 
-  if (redirect !== "") {
-    return <Redirect to={redirect}/>
-  } else {
     return (
       <main className={styles.user}>
         <form  className={styles.userForm} onSubmit={handleJoin}>
@@ -62,7 +54,6 @@ const Welcome = (props: WelcomeProps): JSX.Element => {
         </form>
       </main>
     );
-  }
 };
 
 export default withRouter(Welcome);

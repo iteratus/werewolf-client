@@ -2,10 +2,9 @@ import React, {useState, createRef, FormEvent, useEffect, useContext} from "reac
 import {withRouter} from "react-router";
 import {RouteComponentProps} from "react-router-dom";
 import styles from "./Room.module.scss";
-import {henloServer, enterRoom} from "../../contexts/sockets/emit";
-import GameContext from "../../contexts/GameContext";
+import {henloServer, enterRoom} from "contexts/sockets/emit";
+import GameContext from "contexts/GameContext";
 import i18n from 'i18next';
-import Welcome from "../Welcome";
 
 interface RoomMatchParams {
   roomId: string;
@@ -39,9 +38,6 @@ const Room = (props: RoomProps): JSX.Element => {
     username && enterRoom();
   }, [props.match.params.roomId, username]);
 
-  if (username === "") {
-    return <Welcome/>;
-  } else {
     return (
       <main>
         <div className={styles.welcome}>
@@ -50,7 +46,7 @@ const Room = (props: RoomProps): JSX.Element => {
         {
           room.connectedUsers && room.connectedUsers.length > 0 && (
             <div className={styles.userList}>
-            <p >{i18n.t('page.room.userList')}</p>
+            <p>{i18n.t('page.room.userList')}</p>
               <ul>
                 {room.connectedUsers.map((user: string) =>  <li className={styles.singleUser}>
                   <img alt='adorable user avatar' className={styles.userImage} src={`https://api.adorable.io/avatars/${user}`} />
@@ -83,7 +79,6 @@ const Room = (props: RoomProps): JSX.Element => {
         </form>
       </main>
     );
-  }
 };
 
 export default withRouter(Room);
