@@ -1,8 +1,9 @@
 {
-  "page.user.identify": "Wir würden gerne wissen, wen wir bald töten werden. Bitte identifiziere dich.",
-  "page.user.input.username": "Mad Max",
-  "page.user.label.username": "Name",
-  "page.user.play": "Spielen!",
+  "page.welcome.identify": "Wir würden gerne wissen, wen wir bald töten werden. Bitte identifiziere dich.",
+  "page.welcome.input.username": "Mad Max",
+  "page.welcome.label.username": "Name",
+  "page.welcome.play": "Spielen!",
+  "page.welcome.joinRoom": "Raum beitreten",
 
-  "page.lobby.userList": "Aktuelle verbundene Benutzer"
+  "page.room.userList": "Aktuelle verbundene Benutzer"
 }

@@ -13,19 +13,13 @@ import {initSockets} from "contexts/sockets";
 import "translations/i18nInit";
 
 import Header from "components/Header";
-import User from "pages/User";
-import Lobby from "pages/Lobby";
+import Welcome from "pages/Welcome";
+import Room from "pages/Room";
 
 import styles from "pages/App/App.module.scss";
 
 const App = (): JSX.Element => {
-  let MainApp = Lobby;
-
   const storedUsername = localStorage.getItem("username");
-
-  if (!storedUsername) {
-    MainApp = User;
-  }
 
   const [username, setUsername] = useState(storedUsername || "");
   const [room, setRoom] = useState({ connectedUsers: Array<string>() });
@@ -40,7 +34,8 @@ const App = (): JSX.Element => {
             <div className={styles.contentWrapper}>
               <Header />
               <Switch>
-                <Route exact path="/:roomId" component={MainApp} />
+                <Route exact path="/" component={Welcome} />
+                <Route exact path="/:roomId" component={Room} />
                 <Redirect to={`/${randomString()}`} />
               </Switch>
             </div>
