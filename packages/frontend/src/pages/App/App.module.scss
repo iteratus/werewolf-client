@@ -1,12 +1,13 @@
+@import "src/style-config/settings";
+
 .app {
   height: 100vh;
-  background: url("img/app-background-3.jpg") no-repeat center/cover;
-  background: no-repeat center/cover image-set(
-      "img/app-background-1.jpg" 1x,
-      "img/app-background-2.jpg" 2x,
-      "img/app-background-3.jpg" 3x
-  );
-
+  background: $darkgrey;
+  color: $lightgrey;
   position: relative;
   overflow: hidden;
+}
+
+.contentWrapper {
+  margin: 0 1rem;
 }

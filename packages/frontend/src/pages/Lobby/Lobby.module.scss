@@ -1,25 +1,62 @@
-$space: 4vw;
-$animation-duration: 1s;
+@import "src/style-config/settings";
 
 .lobby {
   padding: 0 2rem;
 }
 
-.choose {
-  display: flex;
-  flex-grow: 1;
+.welcome {
+  text-align: center;
 }
 
-form {
-  position: relative;
-  z-index: 2;
+.userList {
+  max-width: 768px;
+  margin: 2rem auto;
   text-align: center;
+  padding: 1rem;
+  @include neumorphismIn();
+}
 
-  ul {
+.messageForm {
+  width: 100%;
+  text-align: left;
+  position: absolute;
+  margin: 0 0 0 -1rem;
+  padding: 1rem;
+  bottom: 0;
+  z-index: 2;
+
+  @include media-breakpoint-up(xs) {
+    position: relative;
+    max-width: 768px;
+    margin: 0 auto;
     padding: 0;
   }
+}
 
-  li {
-    list-style: none;
-  }
+.singleUser {
+  display: flex;
+  align-items: center;
+  margin: .5rem;
+}
+
+.userImage {
+  height: 45px;
+  border-radius: 5px;
+  margin-right: 1rem;
+}
+
+.messageInput {
+  width: calc(100% - 2rem);
+  width: -webkit-fill-available;
+  margin: .5rem 0;
+  padding: 2rem;
+  @include neumorphismIn();
+}
+
+.messageButton {
+  width: 100%;
+  color: $lightgrey;
+  margin-top: 1rem;
+  padding: 2rem;
+  @include neumorphismOut();
 }

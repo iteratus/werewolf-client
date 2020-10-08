@@ -5,19 +5,18 @@ import {
   Redirect,
   Switch,
 } from "react-router-dom";
-
 import randomString from "random-string";
 
-import Fog from "../../components/Fog";
-import Header from "../../components/Header";
-import User from "../User";
-import Lobby from "../Lobby";
-import SocketContext from "../../contexts/SocketContext";
-import GameContext from "../../contexts/GameContext";
+import SocketContext from "contexts/SocketContext";
+import GameContext from "contexts/GameContext";
+import {initSockets} from "contexts/sockets";
+import "translations/i18nInit";
 
-import styles from "./App.module.scss";
-import {initSockets} from "../../contexts/sockets";
-import "../../translations/i18nInit";
+import Header from "components/Header";
+import User from "pages/User";
+import Lobby from "pages/Lobby";
+
+import styles from "pages/App/App.module.scss";
 
 const App = (): JSX.Element => {
   let MainApp = Lobby;
@@ -38,12 +37,13 @@ const App = (): JSX.Element => {
       <SocketContext.Provider value={{ room, setRoom }}>
         <GameContext.Provider value={{ username, setUsername, room, setRoom }}>
           <div className={styles.app}>
-            <Fog />
-            <Header />
-            <Switch>
-              <Route exact path="/:roomId" component={MainApp} />
-              <Redirect to={`/${randomString()}`} />
-            </Switch>
+            <div className={styles.contentWrapper}>
+              <Header />
+              <Switch>
+                <Route exact path="/:roomId" component={MainApp} />
+                <Redirect to={`/${randomString()}`} />
+              </Switch>
+            </div>
           </div>
         </GameContext.Provider>
       </SocketContext.Provider>

@@ -1,10 +1,10 @@
 import React, { createRef, FormEvent, useContext, useState } from "react";
 import { withRouter } from "react-router";
 import { RouteComponentProps } from "react-router-dom";
-import GameContext from "../../contexts/GameContext";
+import GameContext from "contexts/GameContext";
 import i18n from 'i18next';
 
-import styles from "./User.module.scss";
+import styles from "pages/User/User.module.scss";
 
 const User = (props: RouteComponentProps): JSX.Element => {
   const inputRef = createRef<HTMLInputElement>();
@@ -23,13 +23,14 @@ const User = (props: RouteComponentProps): JSX.Element => {
 
   return (
     <main className={styles.user}>
-      <form onSubmit={saveChanges}>
-        <div>{i18n.t('page.user.identify')}</div>
+      <form className={styles.userForm} onSubmit={saveChanges}>
+      <div className={styles.userInfo}>{i18n.t('page.user.identify')}</div>
         <ul>
           <li>
             <label htmlFor="username">
               {i18n.t('page.user.label.username')}
               <input
+                className={styles.userInput}
                 id="username"
                 ref={inputRef}
                 type="text"
@@ -42,7 +43,7 @@ const User = (props: RouteComponentProps): JSX.Element => {
             </label>
           </li>
           <li>
-            <button type="submit">{i18n.t('page.user.play')}</button>
+            <button className={styles.userButton} type="submit">{i18n.t('page.user.play')}</button>
           </li>
         </ul>
       </form>
