@@ -36,14 +36,15 @@ const Welcome = (props: WelcomeProps): JSX.Element => {
   } else {
     return (
       <main className={styles.user}>
-        <form onSubmit={handleJoin}>
-          <div>{i18n.t('page.welcome.identify')}</div>
+        <form  className={styles.userForm} onSubmit={handleJoin}>
+          <div className={styles.userInfo}>{i18n.t('page.welcome.identify')}</div>
           <ul>
             <li>
               <label htmlFor="username">
                 {i18n.t('page.welcome.label.username')}
                 <input
                   id="username"
+                  className={styles.userInput}
                   ref={userInputRef}
                   type="text"
                   placeholder={i18n.t('page.welcome.input.username')}
@@ -55,7 +56,7 @@ const Welcome = (props: WelcomeProps): JSX.Element => {
               </label>
             </li>
             <li>
-              <button onClick={() => { handleJoin(); }}>{i18n.t('page.welcome.joinRoom')}</button>
+              <button className={styles.userButton} onClick={() => { handleJoin(); }}>{i18n.t('page.welcome.joinRoom')}</button>
             </li>
           </ul>
         </form>
