@@ -1,0 +1,63 @@
+{
+  "alphaWolf": {
+    "name": "role.alphaWolf.name",
+    "description": "role.alphaWolf.description",
+    "actions": {
+      "kill": "voteToKill",
+      "special": "chooseToTransform"
+    }
+  },
+  "amor": {
+    "name": "role.amor.name",
+    "description": "role.amor.description",
+    "actions": {
+      "special": "chooseCouple"
+    }
+  },
+  "hunter": {
+    "name": "role.hunter.name",
+    "description": "role.hunter.description",
+    "actions": {
+      "special": "decideToShoot"
+    }
+  },
+  "mayor": {
+    "name": "role.mayor.name",
+    "description": "role.mayor.description",
+    "actions": {
+      "reveal": "revealMayor"
+    }
+  },
+  "seer": {
+    "name": "role.seer.name",
+    "description": "role.seer.description",
+    "actions": {
+      "special": "checkIdentity"
+    }
+  },
+  "villager": {
+    "name": "role.villager.name",
+    "description": "role.villager.description"
+  },
+  "werewolf": {
+    "name": "role.werewolf.name",
+    "description": "role.werewolf.description",
+    "actions": {
+      "kill": "voteToKill"
+    }
+  },
+  "witch": {
+    "name": "role.witch.name",
+    "description": "role.witch.description",
+    "actions": {
+      "witch": {
+        "poisen": "decideToPoisen",
+        "revive": "decideToRevive"
+      }
+    }
+  },
+  "wolfMan": {
+  "name": "role.wolfMan.name",
+  "description": "role.wolfMan.description"
+}
+}

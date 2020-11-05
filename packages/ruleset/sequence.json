@@ -1,0 +1,13 @@
+{
+  "sequence": [
+    {
+      "night": ["special", "kill", "witch"]
+    },
+    {
+      "day": ["reveal"]
+    },
+    {
+      "evening": ["lynch"]
+    }
+  ]
+}
