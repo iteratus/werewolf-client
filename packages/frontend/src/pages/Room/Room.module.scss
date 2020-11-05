@@ -1,0 +1,62 @@
+@import "src/style-config/settings";
+
+.lobby {
+  padding: 0 2rem;
+}
+
+.welcome {
+  text-align: center;
+}
+
+.userList {
+  max-width: 768px;
+  padding: 1rem;
+  margin: 2rem auto;
+  text-align: center;
+  @include neumorphismIn();
+}
+
+.messageForm {
+  position: absolute;
+  bottom: 0;
+  z-index: 2;
+  width: 100%;
+  padding: 1rem;
+  margin: 0 0 0 -1rem;
+  text-align: left;
+
+  @include media-breakpoint-up(xs) {
+    position: relative;
+    max-width: 768px;
+    padding: 0;
+    margin: 0 auto;
+  }
+}
+
+.singleUser {
+  display: flex;
+  align-items: center;
+  margin: .5rem;
+}
+
+.userImage {
+  height: 45px;
+  margin-right: 1rem;
+  border-radius: 5px;
+}
+
+.messageInput {
+  width: calc(100% - 2rem);
+  width: -webkit-fill-available;
+  padding: 2rem;
+  margin: .5rem 0;
+  @include neumorphismIn();
+}
+
+.messageButton {
+  width: 100%;
+  padding: 2rem;
+  margin-top: 1rem;
+  color: $lightgrey;
+  @include neumorphismOut();
+}

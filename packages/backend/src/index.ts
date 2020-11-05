@@ -86,18 +86,20 @@ io.on("connection", socket => {
   });
 
   socket.on("disconnect", () => {
-    const { room, username } = userIdRoomMap[socket.id];
+    if (userIdRoomMap[socket.id]) {
+      const { room, username } = userIdRoomMap[socket.id];
 
-    delete userIdRoomMap[socket.id];
-    delete roomList[room].userList[username];
+      delete userIdRoomMap[socket.id];
+      delete roomList[room].userList[username];
+
+      if (Object.keys(roomList[room].userList).length < 1) {
+        delete roomList[room];
+
+        console.log("OLNEH room");
+      }
+    }
 
     console.log("you are not.");
-
-    if (Object.keys(roomList[room].userList).length < 1) {
-      delete roomList[room];
-
-      console.log("OLNEH room");
-    }
   });
 });
 

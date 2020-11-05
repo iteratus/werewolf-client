@@ -1,0 +1,9 @@
+{
+  "page.welcome.identify": "Wir würden gerne wissen, wen wir bald töten werden. Bitte identifiziere dich.",
+  "page.welcome.input.username": "Mad Max",
+  "page.welcome.label.username": "Name",
+  "page.welcome.play": "Spielen!",
+  "page.welcome.joinRoom": "Raum beitreten",
+
+  "page.room.userList": "Aktuelle verbundene Benutzer"
+}

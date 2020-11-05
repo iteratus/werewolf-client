@@ -1,5 +1,7 @@
 .header {
   position: relative;
-  padding: 1rem 2rem;
   z-index: 3;
+  display: flex;
+  justify-content: center;
+  padding: 1rem 2rem;
 }

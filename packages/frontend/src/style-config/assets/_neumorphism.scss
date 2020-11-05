@@ -1,0 +1,17 @@
+/// Neumorphism (Soft UI) Design
+
+@mixin neumorphismIn {
+  background: $darkgrey;
+  border-width: 0;
+  border-radius: 5px;
+  box-shadow: inset 5px 5px 10px #2b3034,
+  inset -5px -5px 10px #3b4046;
+}
+
+@mixin neumorphismOut {
+  background: $darkgrey;
+  border-width: 0;
+  border-radius: 5px;
+  box-shadow:  5px 5px 10px #2b3034,
+  -5px -5px 10px #3b4046;
+}

@@ -1,0 +1,39 @@
+@import "src/style-config/settings";
+
+.userInfo {
+  width: 100%;
+  font-weight: 300;
+  text-align: center;
+}
+
+.userForm {
+  position: absolute;
+  bottom: 0;
+  z-index: 2;
+  padding: 1rem;
+  margin: 0 0 0 -1rem;
+  text-align: left;
+
+  @include media-breakpoint-up(xs) {
+    position: relative;
+    max-width: 768px;
+    margin: 0 auto;
+  }
+
+}
+
+.userInput {
+  width: calc(100% - 2rem);
+  width: -webkit-fill-available;
+  padding: 2rem;
+  margin: .5rem 0;
+  @include neumorphismIn();
+}
+
+.userButton {
+  width: 100%;
+  padding: 2rem;
+  margin-top: 1rem;
+  color: $lightgrey;
+  @include neumorphismOut();
+}

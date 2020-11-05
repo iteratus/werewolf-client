@@ -1,0 +1,17 @@
+/// Breakpoints
+/// @example @include media-breakpoint-up(lg);
+
+$grid-breakpoints: (
+  xs: 420px,
+  md: 768px,
+  lg: 1024px,
+  xl: 1280px,
+) !default;
+
+
+/// Colors
+
+$white: #fff !default;
+$lightgrey: #ccc !default;
+$darkgrey: #33383d !default;
+$black: #000 !default;
