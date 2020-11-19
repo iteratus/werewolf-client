@@ -9,6 +9,7 @@
     "@types/random-string": "^0.0.28",
     "@types/socket.io": "^2.1.10",
     "@types/ws": "^7.2.6",
+    "adorable-avatars": "^0.4.1",
     "express": "^4.17.1",
     "nodemon": "^2.0.4",
     "random-string": "^0.2.0",
