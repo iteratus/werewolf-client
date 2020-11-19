@@ -27,6 +27,8 @@ const Room = (props: RoomProps): JSX.Element => {
     }
   };
 
+  const avatarBaseUrl = 'http://localhost:8666/avatar'
+
   useEffect(() => {
     const currentRoomId = props.match.params.roomId;
     const storedRoomId = localStorage.getItem("roomId");
@@ -49,7 +51,7 @@ const Room = (props: RoomProps): JSX.Element => {
             <p>{i18n.t('page.room.userList')}</p>
               <ul>
                 {room.connectedUsers.map((user: string) =>  <li className={styles.singleUser}>
-                  <img alt='adorable user avatar' className={styles.userImage} src={`https://api.adorable.io/avatars/${user}`} />
+                  <img alt='adorable user avatar' className={styles.userImage} src={`${avatarBaseUrl}/${user}`} />
                   {user}
                 </li> )}
               </ul>
