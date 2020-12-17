@@ -5,6 +5,7 @@ import styles from "./Room.module.scss";
 import {henloServer, enterRoom} from "contexts/sockets/emit";
 import GameContext from "contexts/GameContext";
 import i18n from 'i18next';
+import sequence from 'werewolf-ruleset/sequence.json';
 
 interface RoomMatchParams {
   roomId: string;
@@ -39,6 +40,10 @@ const Room = (props: RoomProps): JSX.Element => {
 
     username && enterRoom();
   }, [props.match.params.roomId, username]);
+
+  const sequenceLooper = () => {
+    console.log('sequence got looped!', sequence)
+  }
 
     return (
       <main>
@@ -76,6 +81,7 @@ const Room = (props: RoomProps): JSX.Element => {
             </li>
             <li>
               <button className={styles.messageButton} type="submit">Send</button>
+              <button className={styles.sequenceButton} onClick={sequenceLooper}>Next sequence</button>
             </li>
           </ul>
         </form>

@@ -1,13 +1,21 @@
 {
   "sequence": [
     {
-      "night": ["special", "kill", "witch"]
+      "night": [
+        "special",
+        "kill",
+        "witch"
+      ]
     },
     {
-      "day": ["reveal"]
+      "day": [
+        "reveal"
+      ]
     },
     {
-      "evening": ["lynch"]
+      "evening": [
+        "lynch"
+      ]
     }
   ]
 }

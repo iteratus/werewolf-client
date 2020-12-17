@@ -32,7 +32,8 @@
     "run-p": "^0.0.0",
     "socket.io": "^2.3.0",
     "typescript": "~3.7.2",
-    "ws": "^7.3.1"
+    "ws": "^7.3.1",
+    "werewolf-ruleset": "0.1.0"
   },
   "scripts": {
     "start": "react-scripts start",

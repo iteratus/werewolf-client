@@ -1,3 +1,5 @@
+import { Interface } from "readline";
+
 interface User {
   userId: string;
   socketId: string;
@@ -9,8 +11,17 @@ interface UserList {
   [key: string]: User;
 }
 
+interface Phase {
+  [key: string]: Array<String>;
+}
+
+interface PhaseList {
+  phases: Array<Phase>;
+}
+
 interface GameState {
   started: Date | null;
+  phases: PhaseList | null;
 }
 
 interface Room {

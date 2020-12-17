@@ -35,8 +35,9 @@ io.on("connection", socket => {
 
     if (!roomList[payload.room]) {
       roomList[payload.room] = {
-        gameState: { started: null },
+        gameState: { started: null, phases: null },
         userList: {}
+
       };
 
       console.log("HENLO room");
