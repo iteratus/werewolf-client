@@ -19,6 +19,7 @@ const Room = (props: RoomProps): JSX.Element => {
 
   const [message, setMessage] = useState("");
   const {username, room} = useContext(GameContext);
+  const [sequenceStep, setSequenceStep] = useState(0);
 
   const sendMessage = (event: FormEvent) => {
     event.preventDefault();
@@ -42,7 +43,8 @@ const Room = (props: RoomProps): JSX.Element => {
   }, [props.match.params.roomId, username]);
 
   const sequenceLooper = () => {
-    console.log('sequence got looped!', sequence)
+    console.log(`Current phase: ${Object.keys(sequence[sequenceStep % sequence.length])[0]}`)
+    setSequenceStep(sequenceStep + 1);
   }
 
     return (

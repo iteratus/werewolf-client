@@ -11,6 +11,7 @@ import {
 } from "./interfaces/socket/EnterRoom";
 import RoomList from "./interfaces/game/RoomList";
 import UserIdRoomMap from "./interfaces/game/UserIdRoomMap";
+import sequence from "werewolf-ruleset/sequence.json";
 
 const app: express.Application = express();
 const httpServer: http.Server = http.createServer(app);
