@@ -84,8 +84,8 @@ io.on("connection", socket => {
   });
 
   socket.on("henloServer", message => {
-    console.log(`client sent: ${message}`);
-    socket.emit("henloClient", `you said: ${message}`);
+    console.log(`client sent: ${message.message}`);
+    socket.emit("henloClient", `you said: ${message.message}`);
   });
 
   socket.on("disconnect", () => {
