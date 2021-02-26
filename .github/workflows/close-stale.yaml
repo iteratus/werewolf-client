@@ -10,7 +10,7 @@ jobs:
       - uses: actions/stale@v3
         with:
           #repo-token: ${{ secrets.GITHUB_TOKEN }}
-          stale-pr-message: 'This PR is labelled as "Stale" because it has been open for 7 days with no activity. Remove "Stale" label or comment, otherwise this PR will be closed in 4 days.'
+          stale-pr-message: 'This PR is labelled as "Stale" because it has been open for 7 days with no activity. Remove "Stale" label, otherwise this PR will be closed in 4 days.'
           close-pr-message: 'This PR has been labelled as "Stale" for 4 days with no activity. Therefore, this PR is now closed.'
           days-before-pr-stale: 1
           days-before-pr-close: 1
