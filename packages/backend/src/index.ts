@@ -2,8 +2,9 @@ import express from "express";
 import socketIo from "socket.io";
 import http from "http";
 import randomString from "random-string";
-import avatarsMiddleware from 'adorable-avatars';
+import avatarsMiddleware from "adorable-avatars";
 
+import sequence from "werewolf-ruleset/sequence.json";
 import ErrorResponse from "./interfaces/socket/ErrorResponse";
 import {
   EnterRoomPayload,
@@ -11,22 +12,31 @@ import {
 } from "./interfaces/socket/EnterRoom";
 import RoomList from "./interfaces/game/RoomList";
 import UserIdRoomMap from "./interfaces/game/UserIdRoomMap";
-import sequence from "werewolf-ruleset/sequence.json";
 
 const app: express.Application = express();
 const httpServer: http.Server = http.createServer(app);
 
 const io: socketIo.Server = socketIo(httpServer);
 
-app.get("/", function(req, res) {
+app.get("/", (_, res) => {
   res.send("HENLO World!");
 });
 
-app.use('/avatar', avatarsMiddleware);
+app.use("/avatar", avatarsMiddleware);
 
 const roomList: RoomList = {};
 
 const userIdRoomMap: UserIdRoomMap = {};
+
+let sequenceStep = 0;
+const sequenceLooper = () => {
+  sequenceStep += 1;
+
+  const phase = Object.keys(sequence[sequenceStep % sequence.length])[0];
+  console.log(`Current phase: ${phase}`)
+
+  return phase;
+}
 
 io.on("connection", socket => {
   console.log("you are.");
@@ -38,7 +48,6 @@ io.on("connection", socket => {
       roomList[payload.room] = {
         gameState: { started: null, phases: null },
         userList: {}
-
       };
 
       console.log("HENLO room");
@@ -97,6 +106,9 @@ io.on("connection", socket => {
       delete userIdRoomMap[socket.id];
       delete roomList[room].userList[username];
 
+      const connectedUsers = Object.keys(roomList[room].userList);
+      socket.to(room).emit("connectedUsers", connectedUsers);
+
       if (Object.keys(roomList[room].userList).length < 1) {
         delete roomList[room];
 
@@ -106,6 +118,15 @@ io.on("connection", socket => {
 
     console.log("you are not.");
   });
+
+  socket.on("nextSequence", () => {
+    if (!userIdRoomMap[socket.id]) {
+      return;
+    }
+    const phase = sequenceLooper();
+    const { room } = userIdRoomMap[socket.id];
+    io.in(room).emit("currentSequence", phase);
+  })
 });
 
 httpServer.listen(8666, () => {

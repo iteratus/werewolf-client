@@ -49,4 +49,8 @@ export const socketEvents = ({
         break;
     }
   });
+
+  socket.on("currentSequence", (phase: string) => {
+    console.log(`Current phase: ${phase}`);
+  });
 };

@@ -2,10 +2,9 @@ import React, {useState, createRef, FormEvent, useEffect, useContext} from "reac
 import {withRouter} from "react-router";
 import {RouteComponentProps} from "react-router-dom";
 import styles from "./Room.module.scss";
-import {henloServer, enterRoom} from "contexts/sockets/emit";
+import {henloServer, enterRoom, nextSequence} from "contexts/sockets/emit";
 import GameContext from "contexts/GameContext";
 import i18n from 'i18next';
-import sequence from 'werewolf-ruleset/sequence.json';
 
 interface RoomMatchParams {
   roomId: string;
@@ -19,7 +18,6 @@ const Room = (props: RoomProps): JSX.Element => {
 
   const [message, setMessage] = useState("");
   const {username, room} = useContext(GameContext);
-  const [sequenceStep, setSequenceStep] = useState(0);
 
   const sendMessage = (event: FormEvent) => {
     event.preventDefault();
@@ -42,9 +40,8 @@ const Room = (props: RoomProps): JSX.Element => {
     username && enterRoom();
   }, [props.match.params.roomId, username]);
 
-  const sequenceLooper = () => {
-    console.log(`Current phase: ${Object.keys(sequence[sequenceStep % sequence.length])[0]}`)
-    setSequenceStep(sequenceStep + 1);
+  const sendNextSequence = () => {
+    nextSequence();
   }
 
     return (
@@ -83,7 +80,7 @@ const Room = (props: RoomProps): JSX.Element => {
             </li>
             <li>
               <button className={styles.messageButton} type="submit">Send</button>
-              <button className={styles.sequenceButton} onClick={sequenceLooper}>Next sequence</button>
+              <button className={styles.sequenceButton} onClick={sendNextSequence}>Next sequence</button>
             </li>
           </ul>
         </form>

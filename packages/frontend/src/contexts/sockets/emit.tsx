@@ -17,3 +17,7 @@ export const henloServer = (message: string) => {
 
   socket.emit("henloServer", payload);
 };
+
+export const nextSequence = () => {
+  socket.emit("nextSequence");
+}
