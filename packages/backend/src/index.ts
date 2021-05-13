@@ -16,7 +16,9 @@ import UserIdRoomMap from "./interfaces/game/UserIdRoomMap";
 const app: express.Application = express();
 const httpServer: http.Server = http.createServer(app);
 
-const io: socketIo.Server = socketIo(httpServer);
+const io: socketIo.Server = socketIo(httpServer, {
+  origins: ["http://localhost:3000"]
+});
 
 app.get("/", (_, res) => {
   res.send("HENLO World!");
