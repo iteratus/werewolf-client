@@ -50,7 +50,7 @@ const Room = (props: RoomProps): JSX.Element => {
             <div className={styles.userList}>
             <p>{i18n.t('page.room.userList')}</p>
               <ul>
-                {room.connectedUsers.map((user: string) =>  <li className={styles.singleUser}>
+                {room.connectedUsers.map((user: string) => <li key={user}className={styles.singleUser}>
                   <img alt='adorable user avatar' className={styles.userImage} src={`${avatarBaseUrl}/${user}`} />
                   {user}
                 </li> )}
