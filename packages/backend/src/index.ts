@@ -119,13 +119,13 @@ io.on("connection", socket => {
     console.log("you are not.");
   });
 
-  socket.on("nextSequence", () => {
+  socket.on("nextPhase", () => {
     if (!userIdRoomMap[socket.id]) {
       return;
     }
     const phase = sequenceLooper();
     const { room } = userIdRoomMap[socket.id];
-    io.in(room).emit("currentSequence", phase);
+    io.in(room).emit("currentPhase", phase);
   })
 });
 

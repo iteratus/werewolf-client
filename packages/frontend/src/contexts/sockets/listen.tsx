@@ -50,7 +50,7 @@ export const socketEvents = ({
     }
   });
 
-  socket.on("currentSequence", (phase: string) => {
+  socket.on("currentPhase", (phase: string) => {
     console.log(`Current phase: ${phase}`);
   });
 };
