@@ -22,9 +22,9 @@ const App = (): JSX.Element => {
   const storedUsername = localStorage.getItem("username");
 
   const [username, setUsername] = useState(storedUsername || "");
-  const [room, setRoom] = useState({ connectedUsers: Array<string>() });
+  const [room, setRoom] = useState({ connectedUsers: Array<string>(), phase: "" });
 
-  useEffect(() => initSockets({ setRoom }), []);
+  useEffect(() => initSockets({ room, setRoom }), [room]);
 
   return (
     <Router>

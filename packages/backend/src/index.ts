@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import express from "express";
 import socketIo from "socket.io";
 import http from "http";
@@ -35,10 +36,10 @@ const sequenceLooper = () => {
   sequenceStep += 1;
 
   const phase = Object.keys(sequence[sequenceStep % sequence.length])[0];
-  console.log(`Current phase: ${phase}`)
+  console.log(`Current phase: ${phase}`);
 
   return phase;
-}
+};
 
 io.on("connection", socket => {
   console.log("you are.");
@@ -88,6 +89,7 @@ io.on("connection", socket => {
 
     const response: EnterRoomResponse = {
       userId: roomList[payload.room].userList[payload.username].userId,
+      phase: Object.keys(sequence[sequenceStep % sequence.length])[0],
       connectedUsers
     };
 
@@ -128,7 +130,7 @@ io.on("connection", socket => {
     const phase = sequenceLooper();
     const { room } = userIdRoomMap[socket.id];
     io.in(room).emit("currentPhase", phase);
-  })
+  });
 });
 
 httpServer.listen(8666, () => {

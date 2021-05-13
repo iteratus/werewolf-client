@@ -6,7 +6,8 @@ const GameContext = createContext({
   username: "",
   setUsername: (value: string) => {},
   room: {
-    connectedUsers: Array<string>()
+    connectedUsers: Array<string>(),
+    phase: "",
   },
   setRoom: (room: Room) => {},
 });

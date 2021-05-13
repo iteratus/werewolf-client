@@ -1,3 +1,4 @@
 export default interface Room {
-  connectedUsers: Array<string>
+  connectedUsers: Array<string>;
+  phase: string;
 };

@@ -5,8 +5,10 @@ import { EnterRoomResponse } from "interfaces/socket/EnterRoom";
 import ErrorResponse from "interfaces/socket/ErrorResponse";
 
 export const socketEvents = ({
+  room,
   setRoom
 }: {
+  room: Room,
   setRoom: React.Dispatch<React.SetStateAction<Room>>;
 }) => {
   // //example only; do not use
@@ -33,12 +35,12 @@ export const socketEvents = ({
   socket.on("roomEntered", (response: EnterRoomResponse) => {
     localStorage.setItem("userId", response.userId);
 
-    setRoom({ connectedUsers: response.connectedUsers });
+    setRoom({ connectedUsers: response.connectedUsers, phase: response.phase });
   });
 
   socket.on("connectedUsers", (connectedUsers: Array<string>) => {
     console.log(connectedUsers);
-    setRoom({ connectedUsers });
+    setRoom({ connectedUsers, phase: room.phase });
   });
 
   socket.on("enterRoomError", (response: ErrorResponse) => {
@@ -51,6 +53,9 @@ export const socketEvents = ({
   });
 
   socket.on("currentPhase", (phase: string) => {
+    setRoom({connectedUsers: room.connectedUsers, phase: phase})
     console.log(`Current phase: ${phase}`);
+
   });
 };
+

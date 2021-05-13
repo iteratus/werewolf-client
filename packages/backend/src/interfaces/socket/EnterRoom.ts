@@ -1,6 +1,7 @@
 export interface EnterRoomResponse {
   userId: string;
   connectedUsers: Array<string>;
+  phase: string;
 }
 
 export interface EnterRoomPayload {

@@ -17,7 +17,8 @@ const Room = (props: RoomProps): JSX.Element => {
   const inputRef = createRef<HTMLInputElement>();
 
   const [message, setMessage] = useState("");
-  const {username, room} = useContext(GameContext);
+  const { username, room } = useContext(GameContext);
+
 
   const sendMessage = (event: FormEvent) => {
     event.preventDefault();
@@ -80,7 +81,8 @@ const Room = (props: RoomProps): JSX.Element => {
             </li>
             <li>
               <button className={styles.messageButton} type="submit">Send</button>
-              <button className={styles.sequenceButton} onClick={goToNextPhase}>Next sequence</button>
+              <button className={styles.nextPhaseButton} onClick={goToNextPhase}>Next phase</button>
+              <h1>Current phase: {room.phase}</h1>
             </li>
           </ul>
         </form>
