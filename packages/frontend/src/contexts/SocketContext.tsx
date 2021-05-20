@@ -1,6 +1,6 @@
 import { createContext } from "react";
 
-import Room from "interfaces/Room";
+import { Room } from "werewolf-types";
 
 const SocketContext = createContext({
   room: {
