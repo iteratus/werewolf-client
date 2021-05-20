@@ -5,7 +5,7 @@ import styles from "./Room.module.scss";
 import {henloServer, enterRoom} from "contexts/sockets/emit";
 import GameContext from "contexts/GameContext";
 import i18n from 'i18next';
-import { avatarHost, avatarApiVersion, avatarIconSet} from "config/avatars.json"
+import { avatarHost, avatarApiVersion, avatarIconSet } from "config/avatars.json"
 
 interface RoomMatchParams {
   roomId: string;
