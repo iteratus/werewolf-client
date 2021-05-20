@@ -3,13 +3,13 @@ import socketIo from "socket.io";
 import http from "http";
 import randomString from "random-string";
 
-import ErrorResponse from "./interfaces/socket/ErrorResponse";
-import {
+import type {
+  ErrorResponse,
   EnterRoomPayload,
-  EnterRoomResponse
-} from "./interfaces/socket/EnterRoom";
-import RoomList from "./interfaces/game/RoomList";
-import UserIdRoomMap from "./interfaces/game/UserIdRoomMap";
+  EnterRoomResponse,
+  RoomList,
+  UserIdRoomMap
+} from "werewolf-types"
 
 const app: express.Application = express();
 const httpServer: http.Server = http.createServer(app);

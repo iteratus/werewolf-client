@@ -1,8 +1,10 @@
 import React from "react";
 import { socket } from "./index";
-import Room from "interfaces/Room";
-import { EnterRoomResponse } from "interfaces/socket/EnterRoom";
-import ErrorResponse from "interfaces/socket/ErrorResponse";
+import {
+  ErrorResponse,
+  EnterRoomResponse,
+  Room
+} from "werewolf-types"
 
 export const socketEvents = ({
   setRoom
