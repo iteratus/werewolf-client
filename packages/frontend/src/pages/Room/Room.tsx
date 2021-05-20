@@ -5,6 +5,7 @@ import styles from "./Room.module.scss";
 import {henloServer, enterRoom} from "contexts/sockets/emit";
 import GameContext from "contexts/GameContext";
 import i18n from 'i18next';
+import { avatarHost, avatarApiVersion, avatarIconSet} from "config/avatars.json"
 
 interface RoomMatchParams {
   roomId: string;
@@ -27,9 +28,6 @@ const Room = (props: RoomProps): JSX.Element => {
     }
   };
 
-  const avatarHost = 'avatars.janjaworski.eu';
-  const avatarApiVersion = '4.5';
-  const avatarIconSet = 'human';
   const avatarBaseUrl = `https://${avatarHost}/${avatarApiVersion}/api/${avatarIconSet}`;
 
   useEffect(() => {
