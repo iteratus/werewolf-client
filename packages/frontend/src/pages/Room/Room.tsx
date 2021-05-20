@@ -27,7 +27,10 @@ const Room = (props: RoomProps): JSX.Element => {
     }
   };
 
-  const avatarBaseUrl = 'http://localhost:8666/avatar'
+  const avatarHost = 'avatars.janjaworski.eu';
+  const avatarApiVersion = '4.5';
+  const avatarIconSet = 'human';
+  const avatarBaseUrl = `https://${avatarHost}/${avatarApiVersion}/api/${avatarIconSet}`;
 
   useEffect(() => {
     const currentRoomId = props.match.params.roomId;
@@ -51,7 +54,7 @@ const Room = (props: RoomProps): JSX.Element => {
             <p>{i18n.t('page.room.userList')}</p>
               <ul>
                 {room.connectedUsers.map((user: string) => <li key={user} className={styles.singleUser}>
-                  <img alt='adorable user avatar' className={styles.userImage} src={`${avatarBaseUrl}/${user}`} />
+                  <img alt='user avatar' className={styles.userImage} src={`${avatarBaseUrl}/${user}.svg`} />
                   {user}
                 </li> )}
               </ul>
