@@ -2,7 +2,6 @@ import express from "express";
 import socketIo from "socket.io";
 import http from "http";
 import randomString from "random-string";
-import avatarsMiddleware from 'adorable-avatars';
 
 import ErrorResponse from "./interfaces/socket/ErrorResponse";
 import {
@@ -22,8 +21,6 @@ const io: socketIo.Server = socketIo(httpServer, {
 app.get("/", function(req, res) {
   res.send("HENLO World!");
 });
-
-app.use('/avatar', avatarsMiddleware);
 
 const roomList: RoomList = {};
 
