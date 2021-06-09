@@ -3,7 +3,6 @@ import express from "express";
 import socketIo from "socket.io";
 import http from "http";
 import randomString from "random-string";
-import avatarsMiddleware from "adorable-avatars";
 
 import sequence from "werewolf-ruleset/sequence.json";
 import ErrorResponse from "./interfaces/socket/ErrorResponse";
@@ -24,8 +23,6 @@ const io: socketIo.Server = socketIo(httpServer, {
 app.get("/", (_, res) => {
   res.send("HENLO World!");
 });
-
-app.use("/avatar", avatarsMiddleware);
 
 const roomList: RoomList = {};
 
