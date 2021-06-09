@@ -1,16 +1,11 @@
-import React from "react";
 import { socket } from "./index";
 import Room from "interfaces/Room";
 import { EnterRoomResponse } from "interfaces/socket/EnterRoom";
 import ErrorResponse from "interfaces/socket/ErrorResponse";
 
-export const socketEvents = ({
-  room,
-  setRoom
-}: {
-  room: Room,
-  setRoom: React.Dispatch<React.SetStateAction<Room>>;
-}) => {
+
+
+export const socketEvents = (socketCallback: (SocketRoom: Room) => void) => {
   // //example only; do not use
   // socket.on("queueLength", ({ queueLength }: { queueLength: number }) => {
   //   setValue(state => {
@@ -28,6 +23,12 @@ export const socketEvents = ({
   //   }
   // );
 
+
+
+
+
+
+
   socket.on("henloClient", (message: string) => {
     console.log(`server said: "${message}"`);
   });
@@ -35,12 +36,12 @@ export const socketEvents = ({
   socket.on("roomEntered", (response: EnterRoomResponse) => {
     localStorage.setItem("userId", response.userId);
 
-    setRoom({ connectedUsers: response.connectedUsers, phase: response.phase });
+    socketCallback({ connectedUsers: response.connectedUsers, phase: response.phase });
   });
 
   socket.on("connectedUsers", (connectedUsers: Array<string>) => {
     console.log(connectedUsers);
-    setRoom({ connectedUsers, phase: room.phase });
+    socketCallback({ connectedUsers, phase: "" });
   });
 
   socket.on("enterRoomError", (response: ErrorResponse) => {
@@ -53,7 +54,7 @@ export const socketEvents = ({
   });
 
   socket.on("currentPhase", (phase: string) => {
-    setRoom({connectedUsers: room.connectedUsers, phase: phase})
+    socketCallback({connectedUsers: [], phase: phase})
     console.log(`Current phase: ${phase}`);
 
   });

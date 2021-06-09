@@ -5,6 +5,7 @@ import styles from "./Room.module.scss";
 import {henloServer, enterRoom, nextPhase} from "contexts/sockets/emit";
 import GameContext from "contexts/GameContext";
 import i18n from 'i18next';
+import sequence from 'werewolf-ruleset/sequence.json';
 import { avatarHost, avatarApiVersion, avatarIconSet } from "config/avatars.json"
 
 interface RoomMatchParams {
@@ -18,8 +19,8 @@ const Room = (props: RoomProps): JSX.Element => {
   const inputRef = createRef<HTMLInputElement>();
 
   const [message, setMessage] = useState("");
-  const { username, room } = useContext(GameContext);
-
+  const {username, room} = useContext(GameContext);
+  const [sequenceStep, setSequenceStep] = useState(0);
 
   const sendMessage = (event: FormEvent) => {
     event.preventDefault();
@@ -84,6 +85,7 @@ const Room = (props: RoomProps): JSX.Element => {
               <button className={styles.messageButton} type="submit">Send</button>
               <button className={styles.nextPhaseButton} onClick={goToNextPhase}>Next phase</button>
               <h1>Current phase: {room.phase}</h1>
+              {console.log('room: ', room)}
             </li>
           </ul>
         </form>

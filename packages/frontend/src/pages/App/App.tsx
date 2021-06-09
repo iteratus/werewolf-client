@@ -9,14 +9,15 @@ import randomString from "random-string";
 
 import SocketContext from "contexts/SocketContext";
 import GameContext from "contexts/GameContext";
-import {initSockets} from "contexts/sockets";
+import {initSockets, socket} from "contexts/sockets";
 import "translations/i18nInit";
 
 import Header from "components/Header";
 import Welcome from "pages/Welcome";
-import Room from "pages/Room";
+import RoomPage from "pages/Room";
 
 import styles from "pages/App/App.module.scss";
+import Room from "interfaces/Room";
 
 const App = (): JSX.Element => {
   const storedUsername = localStorage.getItem("username");
@@ -24,7 +25,15 @@ const App = (): JSX.Element => {
   const [username, setUsername] = useState(storedUsername || "");
   const [room, setRoom] = useState({ connectedUsers: Array<string>(), phase: "" });
 
-  useEffect(() => initSockets({ room, setRoom }), [room]);
+  const socketCallback = (socketRoom: Room) => {
+    if (socketRoom.phase === "") {
+      socketRoom.phase = room.phase
+    }
+    setRoom(socketRoom)
+  }
+
+  useEffect(() => initSockets(socketCallback), []);
+
 
   return (
     <Router>
@@ -35,7 +44,7 @@ const App = (): JSX.Element => {
               <Header />
                 { username === "" ? <Welcome /> : (
                   <Switch>
-                    <Route exact path="/:roomId" component={Room} />
+                    <Route exact path="/:roomId" component={RoomPage} />
                     <Redirect to={`/${randomString()}`} />
                   </Switch>
                 ) }
