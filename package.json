@@ -47,5 +47,6 @@
     "sass-lint": "^1.13.1",
     "sass-lint-auto-fix": "^0.21.0",
     "typescript": "^3.4.3"
-  }
+  },
+  "dependencies": {}
 }

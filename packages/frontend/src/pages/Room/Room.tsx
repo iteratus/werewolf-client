@@ -2,7 +2,7 @@ import React, {useState, createRef, FormEvent, useEffect, useContext} from "reac
 import {withRouter} from "react-router";
 import {RouteComponentProps} from "react-router-dom";
 import styles from "./Room.module.scss";
-import {henloServer, enterRoom} from "contexts/sockets/emit";
+import {henloServer, enterRoom, nextPhase} from "contexts/sockets/emit";
 import GameContext from "contexts/GameContext";
 import i18n from 'i18next';
 import { avatarHost, avatarApiVersion, avatarIconSet } from "config/avatars.json"
@@ -41,6 +41,10 @@ const Room = (props: RoomProps): JSX.Element => {
     username && enterRoom();
   }, [props.match.params.roomId, username]);
 
+  const goToNextPhase = () => {
+    nextPhase();
+  }
+
     return (
       <main>
         <div className={styles.welcome}>
@@ -77,6 +81,9 @@ const Room = (props: RoomProps): JSX.Element => {
             </li>
             <li>
               <button className={styles.messageButton} type="submit">Send</button>
+              <button className={styles.nextPhaseButton} onClick={goToNextPhase}>Next phase</button>
+              <h1>Current phase: {room.phase}</h1>
+              {console.log('room: ', room)}
             </li>
           </ul>
         </form>

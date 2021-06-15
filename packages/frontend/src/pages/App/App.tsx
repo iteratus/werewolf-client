@@ -14,17 +14,27 @@ import "translations/i18nInit";
 
 import Header from "components/Header";
 import Welcome from "pages/Welcome";
-import Room from "pages/Room";
+import RoomPage from "pages/Room";
 
 import styles from "pages/App/App.module.scss";
+import Room from "interfaces/Room";
 
 const App = (): JSX.Element => {
   const storedUsername = localStorage.getItem("username");
 
   const [username, setUsername] = useState(storedUsername || "");
-  const [room, setRoom] = useState({ connectedUsers: Array<string>() });
+  const [room, setRoom] = useState({ connectedUsers: Array<string>(), phase: "" });
 
-  useEffect(() => initSockets({ setRoom }), []);
+  const socketCallback = (socketRoom: Room) => {
+    if (socketRoom.phase === "") {
+      socketRoom.phase = room.phase
+    }
+    setRoom(socketRoom)
+  }
+
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  useEffect(() => initSockets(socketCallback), []);
+
 
   return (
     <Router>
@@ -35,7 +45,7 @@ const App = (): JSX.Element => {
               <Header />
                 { username === "" ? <Welcome /> : (
                   <Switch>
-                    <Route exact path="/:roomId" component={Room} />
+                    <Route exact path="/:roomId" component={RoomPage} />
                     <Redirect to={`/${randomString()}`} />
                   </Switch>
                 ) }

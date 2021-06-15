@@ -9,8 +9,17 @@ interface UserList {
   [key: string]: User;
 }
 
+interface Phase {
+  [key: string]: Array<string>;
+}
+
+interface PhaseList {
+  phases: Array<Phase>;
+}
+
 interface GameState {
   started: Date | null;
+  phases: PhaseList | null;
 }
 
 interface Room {

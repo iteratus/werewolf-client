@@ -1,13 +1,19 @@
-{
-  "sequence": [
-    {
-      "night": ["special", "kill", "witch"]
-    },
-    {
-      "day": ["reveal"]
-    },
-    {
-      "evening": ["lynch"]
-    }
-  ]
-}
+[
+  {
+    "night": [
+      "special",
+      "kill",
+      "witch"
+    ]
+  },
+  {
+    "day": [
+      "reveal"
+    ]
+  },
+  {
+    "evening": [
+      "lynch"
+    ]
+  }
+]
