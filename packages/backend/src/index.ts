@@ -1,10 +1,10 @@
+import sequence from "werewolf-ruleset/sequence.json";
 /* eslint-disable no-console */
 import express from "express";
 import socketIo from "socket.io";
 import http from "http";
 import randomString from "random-string";
 
-import sequence from "werewolf-ruleset/sequence.json";
 import ErrorResponse from "./interfaces/socket/ErrorResponse";
 import {
   EnterRoomPayload,
@@ -83,16 +83,17 @@ io.on("connection", socket => {
     socket.join(payload.room);
 
     const connectedUsers = Object.keys(roomList[payload.room].userList);
+    const phase = Object.keys(sequence[sequenceStep % sequence.length])[0];
 
     const response: EnterRoomResponse = {
       userId: roomList[payload.room].userList[payload.username].userId,
-      phase: Object.keys(sequence[sequenceStep % sequence.length])[0],
+      phase,
       connectedUsers
     };
 
     socket.emit("roomEntered", response);
 
-    socket.to(payload.room).emit("connectedUsers", connectedUsers);
+    socket.to(payload.room).emit("connectedUsers", { connectedUsers, phase });
   });
 
   socket.on("henloServer", message => {
@@ -108,7 +109,8 @@ io.on("connection", socket => {
       delete roomList[room].userList[username];
 
       const connectedUsers = Object.keys(roomList[room].userList);
-      socket.to(room).emit("connectedUsers", connectedUsers);
+      const phase = Object.keys(sequence[sequenceStep % sequence.length])[0];
+      socket.to(room).emit("connectedUsers", { connectedUsers, phase });
 
       if (Object.keys(roomList[room].userList).length < 1) {
         delete roomList[room];
@@ -126,7 +128,9 @@ io.on("connection", socket => {
     }
     const phase = sequenceLooper();
     const { room } = userIdRoomMap[socket.id];
-    io.in(room).emit("currentPhase", phase);
+    const connectedUsers = Object.keys(roomList[room].userList);
+    io.in(room).emit("currentPhase", { phase, connectedUsers });
+    console.log("sent current phase");
   });
 });
 

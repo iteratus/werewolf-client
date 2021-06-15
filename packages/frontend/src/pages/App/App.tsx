@@ -9,7 +9,7 @@ import randomString from "random-string";
 
 import SocketContext from "contexts/SocketContext";
 import GameContext from "contexts/GameContext";
-import {initSockets, socket} from "contexts/sockets";
+import {initSockets} from "contexts/sockets";
 import "translations/i18nInit";
 
 import Header from "components/Header";
@@ -32,6 +32,7 @@ const App = (): JSX.Element => {
     setRoom(socketRoom)
   }
 
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   useEffect(() => initSockets(socketCallback), []);
 
 

@@ -1,6 +1,6 @@
 import { socket } from "./index";
 import Room from "interfaces/Room";
-import { EnterRoomResponse } from "interfaces/socket/EnterRoom";
+import { EnterRoomResponse, RoomUpdateResponse } from "interfaces/socket/EnterRoom";
 import ErrorResponse from "interfaces/socket/ErrorResponse";
 
 
@@ -39,9 +39,9 @@ export const socketEvents = (socketCallback: (SocketRoom: Room) => void) => {
     socketCallback({ connectedUsers: response.connectedUsers, phase: response.phase });
   });
 
-  socket.on("connectedUsers", (connectedUsers: Array<string>) => {
-    console.log(connectedUsers);
-    socketCallback({ connectedUsers, phase: "" });
+  socket.on("connectedUsers", (response: RoomUpdateResponse) => {
+    console.log(response);
+    socketCallback(response);
   });
 
   socket.on("enterRoomError", (response: ErrorResponse) => {
@@ -53,9 +53,9 @@ export const socketEvents = (socketCallback: (SocketRoom: Room) => void) => {
     }
   });
 
-  socket.on("currentPhase", (phase: string) => {
-    socketCallback({connectedUsers: [], phase: phase})
-    console.log(`Current phase: ${phase}`);
+  socket.on("currentPhase", (response: RoomUpdateResponse) => {
+    socketCallback(response)
+    console.log(`Current phase: ${response.phase}`);
 
   });
 };
