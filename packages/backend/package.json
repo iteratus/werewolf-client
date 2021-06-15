@@ -14,7 +14,7 @@
     "random-string": "^0.2.0",
     "socket.io": "^2.4.0",
     "typescript": "^3.9.7",
-    "werewolf-ruleset": "0.1.0"
+    "werewolf-ruleset": "0.1.0",
     "ws": "^7.4.6"
   },
   "scripts": {

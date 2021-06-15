@@ -3,32 +3,7 @@ import Room from "interfaces/Room";
 import { EnterRoomResponse, RoomUpdateResponse } from "interfaces/socket/EnterRoom";
 import ErrorResponse from "interfaces/socket/ErrorResponse";
 
-
-
 export const socketEvents = (socketCallback: (SocketRoom: Room) => void) => {
-  // //example only; do not use
-  // socket.on("queueLength", ({ queueLength }: { queueLength: number }) => {
-  //   setValue(state => {
-  //     return { ...state, queueLength };
-  //   });
-  // });
-  //
-  // //example only; do not use
-  // socket.on(
-  //   "positionInLine",
-  //   ({ positionInLine }: { positionInLine: number }) => {
-  //     setValue(state => {
-  //       return { ...state, positionInLine };
-  //     });
-  //   }
-  // );
-
-
-
-
-
-
-
   socket.on("henloClient", (message: string) => {
     console.log(`server said: "${message}"`);
   });
@@ -59,4 +34,3 @@ export const socketEvents = (socketCallback: (SocketRoom: Room) => void) => {
 
   });
 };
-

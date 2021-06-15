@@ -1,5 +1,3 @@
-import { Interface } from "readline";
-
 interface User {
   userId: string;
   socketId: string;
@@ -12,7 +10,7 @@ interface UserList {
 }
 
 interface Phase {
-  [key: string]: Array<String>;
+  [key: string]: Array<string>;
 }
 
 interface PhaseList {
